@@ -25,6 +25,14 @@ public class UserDTO implements Serializable {
 	
 	private List<NotificationDTO> notifications = new ArrayList<>(); 
 	
+	private List<BookDTO> myBooks = new ArrayList<>();
+	
+	private List<BookDTO> wishList = new ArrayList<>();
+	
+	private List<Long> exchangesCreatedId = new ArrayList<>();
+	
+	private List<Long> exchangesRecievedId = new ArrayList<>();
+	
 	public UserDTO() {}
 
 	public UserDTO(Long id, String name, String email, String password, String imgUrl) {
@@ -42,7 +50,11 @@ public class UserDTO implements Serializable {
 		this.imgUrl = entity.getImgUrl();
 		
 		entity.getRoles().forEach(rol -> this.roles.add(new RoleDTO(rol)));
-
+		entity.getNotifications().forEach(not -> this.notifications.add(new NotificationDTO(not)));
+		entity.getMyBooks().forEach(book -> this.myBooks.add(new BookDTO(book)));
+		entity.getWishList().forEach(book -> this.wishList.add(new BookDTO(book)));
+		entity.getExchangesRecieved().forEach(ex -> this.exchangesRecievedId.add(ex.getId()));
+		entity.getExchangesCreated().forEach(ex -> this.exchangesCreatedId.add(ex.getId()));
 	}
 
 	public Long getId() {
@@ -83,6 +95,22 @@ public class UserDTO implements Serializable {
 
 	public List<NotificationDTO> getNotifications() {
 		return notifications;
+	}
+
+	public List<BookDTO> getMyBooks() {
+		return myBooks;
+	}
+
+	public List<BookDTO> getWishList() {
+		return wishList;
+	}
+
+	public List<Long> getExchangesCreatedId() {
+		return exchangesCreatedId;
+	}
+
+	public List<Long> getExchangesRecievedId() {
+		return exchangesRecievedId;
 	}
 
 	@Override
