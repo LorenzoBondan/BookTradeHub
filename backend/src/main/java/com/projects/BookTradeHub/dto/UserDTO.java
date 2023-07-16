@@ -23,7 +23,8 @@ public class UserDTO implements Serializable {
 	
 	private List<RoleDTO> roles = new ArrayList<>();
 	
-	  
+	private List<NotificationDTO> notifications = new ArrayList<>(); 
+	
 	public UserDTO() {}
 
 	public UserDTO(Long id, String name, String email, String password, String imgUrl) {
@@ -78,6 +79,10 @@ public class UserDTO implements Serializable {
 
 	public List<RoleDTO> getRoles() { 
 		return roles;
+	}
+
+	public List<NotificationDTO> getNotifications() {
+		return notifications;
 	}
 
 	@Override
