@@ -44,18 +44,23 @@ public class User implements UserDetails, Serializable{
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "tb_user_role",
 				joinColumns = @JoinColumn(name = "user_id"), 
-				inverseJoinColumns = @JoinColumn(name = "role_id")
-			)
+				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 	
 	@OneToMany(mappedBy = "user")
 	private List<Notification> notifications = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "userMy")
-	private List<Book> myBooks = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_user_mybooks",
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "book_id"))
+	private Set<Book> myBooks = new HashSet<>();
 	
-	@OneToMany(mappedBy = "userWish")
-	private List<Book> wishList = new ArrayList<>();
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "tb_user_wishlist",
+				joinColumns = @JoinColumn(name = "user_id"), 
+				inverseJoinColumns = @JoinColumn(name = "book_id"))
+	private Set<Book> wishList = new HashSet<>();
 	
 	@OneToMany(mappedBy = "creator")
 	private List<Exchange> exchangesCreated = new ArrayList<>();
@@ -119,11 +124,11 @@ public class User implements UserDetails, Serializable{
 		return notifications;
 	}
 
-	public List<Book> getMyBooks() {
+	public Set<Book> getMyBooks() {
 		return myBooks;
 	}
 
-	public List<Book> getWishList() {
+	public Set<Book> getWishList() {
 		return wishList;
 	}
 

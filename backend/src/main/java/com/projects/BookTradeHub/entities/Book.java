@@ -7,11 +7,11 @@ import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -30,13 +30,11 @@ public class Book implements Serializable {
 	@Column(columnDefinition = "TEXT")
 	private String imgUrl;
 	
-	@ManyToOne
-    @JoinColumn(name = "user_Wish_id")
-	private User userWish;
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "myBooks")
+	private List<User> usersMy = new ArrayList<>();
 	
-	@ManyToOne
-    @JoinColumn(name = "user_My_id")
-	private User userMy;
+	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "wishList")
+	private List<User> usersWish = new ArrayList<>();
 	
 	@OneToMany(mappedBy = "bookOffered")
 	private List<Exchange> exchangesOffered = new ArrayList<>();
@@ -46,15 +44,13 @@ public class Book implements Serializable {
 
 	public Book() {}
 
-	public Book(Long id, String title, String author, Integer year, String imgUrl, User userWish, User userMy) {
+	public Book(Long id, String title, String author, Integer year, String imgUrl) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.author = author;
 		this.year = year;
 		this.imgUrl = imgUrl;
-		this.userWish = userWish;
-		this.userMy = userMy;
 	}
 
 	public Long getId() {
@@ -97,20 +93,12 @@ public class Book implements Serializable {
 		this.imgUrl = imgUrl;
 	}
 
-	public User getUserWish() {
-		return userWish;
+	public List<User> getUsersMy() {
+		return usersMy;
 	}
 
-	public void setUserWish(User userWish) {
-		this.userWish = userWish;
-	}
-
-	public User getUserMy() {
-		return userMy;
-	}
-
-	public void setUserMy(User userMy) {
-		this.userMy = userMy;
+	public List<User> getUsersWish() {
+		return usersWish;
 	}
 
 	public List<Exchange> getExchangesOffered() {
