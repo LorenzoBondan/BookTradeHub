@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -23,6 +24,7 @@ public class Notification implements Serializable {
 	private Long id;
 	private String description;
 	private Boolean read;
+	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private LocalDateTime moment;
 	
 	@ManyToOne

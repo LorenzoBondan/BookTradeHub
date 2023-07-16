@@ -57,6 +57,12 @@ public class User implements UserDetails, Serializable{
 	@OneToMany(mappedBy = "userWish")
 	private List<Book> wishList = new ArrayList<>();
 	
+	@OneToMany(mappedBy = "creator")
+	private List<Exchange> exchangesCreated = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "reciver")
+	private List<Exchange> exchangesRecieved = new ArrayList<>();
+	
 	public User() {
 	}
 	
@@ -119,6 +125,14 @@ public class User implements UserDetails, Serializable{
 
 	public List<Book> getWishList() {
 		return wishList;
+	}
+
+	public List<Exchange> getExchangesCreated() {
+		return exchangesCreated;
+	}
+
+	public List<Exchange> getExchangesRecieved() {
+		return exchangesRecieved;
 	}
 
 	@Override

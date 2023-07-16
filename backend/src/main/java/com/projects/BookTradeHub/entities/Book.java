@@ -1,14 +1,18 @@
 package com.projects.BookTradeHub.entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,6 +27,7 @@ public class Book implements Serializable {
 	private String title;
 	private String author;
 	private Integer year;
+	@Column(columnDefinition = "TEXT")
 	private String imgUrl;
 	
 	@ManyToOne
@@ -32,6 +37,12 @@ public class Book implements Serializable {
 	@ManyToOne
     @JoinColumn(name = "user_My_id")
 	private User userMy;
+	
+	@OneToMany(mappedBy = "bookOffered")
+	private List<Exchange> exchangesOffered = new ArrayList<>();
+	
+	@OneToMany(mappedBy = "bookRecieved")
+	private List<Exchange> exchangesRecieved = new ArrayList<>();
 
 	public Book() {}
 
@@ -100,6 +111,14 @@ public class Book implements Serializable {
 
 	public void setUserMy(User userMy) {
 		this.userMy = userMy;
+	}
+
+	public List<Exchange> getExchangesOffered() {
+		return exchangesOffered;
+	}
+
+	public List<Exchange> getExchangesRecieved() {
+		return exchangesRecieved;
 	}
 
 	@Override
