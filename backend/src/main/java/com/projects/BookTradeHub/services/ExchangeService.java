@@ -124,10 +124,10 @@ public class ExchangeService {
 		try {
 			Exchange entity = repository.getOne(id);
 			if(entity.getStatus() != Status.CANCELED) {
-				Book bookOffered = bookRepository.getOne(bookId);
+				Book bookReceived = bookRepository.getOne(bookId);
 				
-				entity.setBookOffered(bookOffered);
-				updateStatus(id, Status.PENDIND, "The book " + bookOffered.getTitle() + " was offered to the exchange.");
+				entity.setBookReceived(bookReceived);
+				updateStatus(id, Status.PENDIND, "The book " + bookReceived.getTitle() + " was offered to the exchange.");
 				
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);
@@ -142,7 +142,7 @@ public class ExchangeService {
 	public ExchangeDTO acceptOffer(Long id) {
 		try {
 			Exchange entity = repository.getOne(id);
-			if(entity.getBookOffered() != null && entity.getStatus() != Status.CANCELED) {
+			if(entity.getBookReceived() != null && entity.getStatus() != Status.CANCELED) {
 				updateStatus(id, Status.ACCEPTED, "The exchange was accepted!");
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);
@@ -157,9 +157,9 @@ public class ExchangeService {
 	public ExchangeDTO rejectOfferAndPendingAgain(Long id) {
 		try {
 			Exchange entity = repository.getOne(id);
-			if(entity.getBookOffered() != null && entity.getStatus() != Status.CANCELED) {
-				updateStatus(id, Status.PENDIND, "The exchange with the book " + entity.getBookOffered().getTitle() + " was rejected. Please offer another book to the exchange.");
-				entity.setBookOffered(null);
+			if(entity.getBookReceived() != null && entity.getStatus() != Status.CANCELED) {
+				updateStatus(id, Status.PENDIND, "The exchange with the book " + entity.getBookReceived().getTitle() + " was rejected. Please offer another book to the exchange.");
+				entity.setBookReceived(null);
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);
 			}
@@ -173,7 +173,7 @@ public class ExchangeService {
 	public ExchangeDTO rejectOfferAndCancel(Long id) {
 		try {
 			Exchange entity = repository.getOne(id);
-			if(entity.getBookOffered() != null && entity.getStatus() != Status.CANCELED) {
+			if(entity.getBookReceived() != null && entity.getStatus() != Status.CANCELED) {
 				updateStatus(id, Status.CANCELED, "The exchange #" + entity.getId() + " was canceled.");
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);
