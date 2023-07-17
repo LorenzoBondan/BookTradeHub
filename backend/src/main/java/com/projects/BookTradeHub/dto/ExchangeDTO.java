@@ -15,20 +15,20 @@ public class ExchangeDTO implements Serializable {
 	private Status status;
 	private LocalDateTime creationTime;
 	private UserDTO creator;
-	private UserDTO reciever;
+	private UserDTO receiver;
 	private BookDTO bookOffered;
 	private BookDTO bookRecieved;
 
 	public ExchangeDTO() {}
 
-	public ExchangeDTO(Long id, Status status, LocalDateTime creationTime, UserDTO creator, UserDTO reciever,
+	public ExchangeDTO(Long id, Status status, LocalDateTime creationTime, UserDTO creator, UserDTO receiver,
 			BookDTO bookOffered, BookDTO bookRecieved) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.creationTime = creationTime;
 		this.creator = creator;
-		this.reciever = reciever;
+		this.receiver = receiver;
 		this.bookOffered = bookOffered;
 		this.bookRecieved = bookRecieved;
 	}
@@ -38,7 +38,7 @@ public class ExchangeDTO implements Serializable {
 		this.status = entity.getStatus();
 		this.creationTime = entity.getCreationTime();
 		this.creator = new UserDTO(entity.getCreator());
-		this.reciever = new UserDTO(entity.getReciver());
+		this.receiver = new UserDTO(entity.getReceiver());
 		this.bookOffered = new BookDTO(entity.getBookOffered());
 		this.bookRecieved = new BookDTO(entity.getBookRecieved());
 	}
@@ -75,12 +75,12 @@ public class ExchangeDTO implements Serializable {
 		this.creator = creator;
 	}
 
-	public UserDTO getReciever() {
-		return reciever;
+	public UserDTO getReceiver() {
+		return receiver;
 	}
 
-	public void setReciever(UserDTO reciever) {
-		this.reciever = reciever;
+	public void setReceiver(UserDTO receiver) {
+		this.receiver = receiver;
 	}
 
 	public BookDTO getBookOffered() {

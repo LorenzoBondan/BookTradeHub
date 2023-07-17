@@ -34,7 +34,7 @@ public class Exchange implements Serializable {
 	
 	@ManyToOne
     @JoinColumn(name = "reciver_id")
-	private User reciver;
+	private User receiver;
 	
 	@ManyToOne
     @JoinColumn(name = "book_Offered_id")
@@ -46,14 +46,14 @@ public class Exchange implements Serializable {
 	
 	public Exchange() {}
 
-	public Exchange(Long id, Status status, LocalDateTime creationTime, User creator, User reciver, Book bookOffered,
+	public Exchange(Long id, Status status, LocalDateTime creationTime, User creator, User receiver, Book bookOffered,
 			Book bookRecieved) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.creationTime = creationTime;
 		this.creator = creator;
-		this.reciver = reciver;
+		this.receiver = receiver;
 		this.bookOffered = bookOffered;
 		this.bookRecieved = bookRecieved;
 	}
@@ -90,12 +90,12 @@ public class Exchange implements Serializable {
 		this.creator = creator;
 	}
 
-	public User getReciver() {
-		return reciver;
+	public User getReceiver() {
+		return receiver;
 	}
 
-	public void setReciver(User reciver) {
-		this.reciver = reciver;
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
 	}
 
 	public Book getBookOffered() {
