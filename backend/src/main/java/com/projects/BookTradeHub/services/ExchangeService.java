@@ -40,9 +40,6 @@ public class ExchangeService {
 	
 	@Autowired
 	private NotificationRepository notificationRepository;
-	
-	@Autowired
-	private AuthService authService;
 
 	@Transactional(readOnly = true)
 	public Page<ExchangeDTO> findAllPaged(Pageable pageable) {
@@ -63,18 +60,6 @@ public class ExchangeService {
 		copyDtoToEntity(dto ,entity);
 		entity = repository.save(entity);
 		return new ExchangeDTO(entity);
-	}
-
-	@Transactional
-	public ExchangeDTO update(Long id, ExchangeDTO dto) {
-		try {
-			Exchange entity = repository.getOne(id);
-			copyDtoToEntity(dto, entity);
-			entity = repository.save(entity);
-			return new ExchangeDTO(entity);
-		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id not found " + id);
-		}
 	}
 
 	public void delete(Long id) {
@@ -100,8 +85,7 @@ public class ExchangeService {
 	
 	@Transactional(readOnly = true)
 	public Page<ExchangeDTO> findByStatus(User user, Status status, String title, Pageable pageable) {
-		User me = authService.authenticated();
-		Page<Exchange> list = repository.findByStatus(me, status, title, pageable);
+		Page<Exchange> list = repository.findByStatus(user, status, title, pageable);
 		return list.map(x -> new ExchangeDTO(x));
 	}
 	
@@ -139,13 +123,16 @@ public class ExchangeService {
 	public ExchangeDTO offerBook(Long id, Long bookId) {
 		try {
 			Exchange entity = repository.getOne(id);
-			Book bookOffered = bookRepository.getOne(bookId);
-			
-			entity.setBookOffered(bookOffered);
-			updateStatus(id, Status.PENDIND, "The book " + bookOffered.getTitle() + " was offered to the exchange.");
-			
-			entity = repository.save(entity);
-			return new ExchangeDTO(entity);
+			if(entity.getStatus() != Status.CANCELED) {
+				Book bookOffered = bookRepository.getOne(bookId);
+				
+				entity.setBookOffered(bookOffered);
+				updateStatus(id, Status.PENDIND, "The book " + bookOffered.getTitle() + " was offered to the exchange.");
+				
+				entity = repository.save(entity);
+				return new ExchangeDTO(entity);
+			}
+			throw new ResourceNotFoundException("Exchange is canceled." + id);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found " + id);
 		}
@@ -155,12 +142,12 @@ public class ExchangeService {
 	public ExchangeDTO acceptOffer(Long id) {
 		try {
 			Exchange entity = repository.getOne(id);
-			if(entity.getBookOffered() != null) {
+			if(entity.getBookOffered() != null && entity.getStatus() != Status.CANCELED) {
 				updateStatus(id, Status.ACCEPTED, "The exchange was accepted!");
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);
 			}
-			throw new ResourceNotFoundException("Book offered not found " + id);
+			throw new ResourceNotFoundException("Book offered not found or exchange canceled " + id);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found " + id);
 		}
@@ -170,13 +157,13 @@ public class ExchangeService {
 	public ExchangeDTO rejectOfferAndPendingAgain(Long id) {
 		try {
 			Exchange entity = repository.getOne(id);
-			if(entity.getBookOffered() != null) {
+			if(entity.getBookOffered() != null && entity.getStatus() != Status.CANCELED) {
 				updateStatus(id, Status.PENDIND, "The exchange with the book " + entity.getBookOffered().getTitle() + " was rejected. Please offer another book to the exchange.");
 				entity.setBookOffered(null);
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);
 			}
-			throw new ResourceNotFoundException("Book offered not found " + id);
+			throw new ResourceNotFoundException("Book offered not found or exchange canceled " + id);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found " + id);
 		}
@@ -186,12 +173,12 @@ public class ExchangeService {
 	public ExchangeDTO rejectOfferAndCancel(Long id) {
 		try {
 			Exchange entity = repository.getOne(id);
-			if(entity.getBookOffered() != null) {
+			if(entity.getBookOffered() != null && entity.getStatus() != Status.CANCELED) {
 				updateStatus(id, Status.CANCELED, "The exchange #" + entity.getId() + " was canceled.");
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);
 			}
-			throw new ResourceNotFoundException("Book offered not found " + id);
+			throw new ResourceNotFoundException("Book offered not found or exchange canceled " + id);
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found " + id);
 		}
