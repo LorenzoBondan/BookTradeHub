@@ -67,7 +67,8 @@ public class ExchangeResource {
 	
 	@PutMapping(value = "/{id}/offerBook/{bookId}")
 	public ResponseEntity<ExchangeDTO> offerBook(@PathVariable Long id, @PathVariable Long bookId){
-		ExchangeDTO newDto = service.offerBook(id, bookId);
+		User me = authService.authenticated();
+		ExchangeDTO newDto = service.offerBook(id, bookId, me);
 		return ResponseEntity.ok().body(newDto);
 	}
 	

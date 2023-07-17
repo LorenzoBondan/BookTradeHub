@@ -36,10 +36,10 @@ public class Book implements Serializable {
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "wishList")
 	private List<User> usersWish = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "bookOffered")
+	@OneToMany(mappedBy = "bookOffered", fetch = FetchType.EAGER)
 	private List<Exchange> exchangesOffered = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "bookReceived")
+	@OneToMany(mappedBy = "bookReceived", fetch = FetchType.EAGER)
 	private List<Exchange> exchangesReceived = new ArrayList<>();
 
 	public Book() {}

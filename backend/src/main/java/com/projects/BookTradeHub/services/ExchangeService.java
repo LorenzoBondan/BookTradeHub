@@ -111,7 +111,7 @@ public class ExchangeService {
 			notification2.setDescription(message);
 			notification2.setMoment(date);
 			notification2.setRead(false);
-			notification2 = notificationRepository.save(notification);
+			notification2 = notificationRepository.save(notification2);
 			
 			return new ExchangeDTO(entity);
 		} catch (EntityNotFoundException e) {
@@ -120,16 +120,20 @@ public class ExchangeService {
 	}
 	
 	@Transactional
-	public ExchangeDTO offerBook(Long id, Long bookId) {
+	public ExchangeDTO offerBook(Long id, Long bookId, User user) {
 		try {
 			Exchange entity = repository.getOne(id);
 			if(entity.getStatus() != Status.CANCELED) {
 				Book bookReceived = bookRepository.getOne(bookId);
 				
 				entity.setBookReceived(bookReceived);
-				updateStatus(id, Status.PENDIND, "The book " + bookReceived.getTitle() + " was offered to the exchange.");
-				
+				entity.setReceiver(user);
+				user = userRepository.save(user);
 				entity = repository.save(entity);
+				updateStatus(id, Status.PENDIND, "The book " + bookReceived.getTitle() + " was offered to the exchange.");
+				entity = repository.save(entity);
+				
+				
 				return new ExchangeDTO(entity);
 			}
 			throw new ResourceNotFoundException("Exchange is canceled." + id);

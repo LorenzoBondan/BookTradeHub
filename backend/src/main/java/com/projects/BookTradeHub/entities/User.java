@@ -47,7 +47,7 @@ public class User implements UserDetails, Serializable{
 				inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<Role> roles = new HashSet<>();
 	
-	@OneToMany(mappedBy = "user")
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<Notification> notifications = new ArrayList<>();
 	
 	@ManyToMany(fetch = FetchType.EAGER)
@@ -62,10 +62,10 @@ public class User implements UserDetails, Serializable{
 				inverseJoinColumns = @JoinColumn(name = "book_id"))
 	private Set<Book> wishList = new HashSet<>();
 	
-	@OneToMany(mappedBy = "creator")
+	@OneToMany(mappedBy = "creator", fetch = FetchType.EAGER)
 	private List<Exchange> exchangesCreated = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "receiver")
+	@OneToMany(mappedBy = "receiver", fetch = FetchType.EAGER)
 	private List<Exchange> exchangesReceived = new ArrayList<>();
 	
 	public User() {
