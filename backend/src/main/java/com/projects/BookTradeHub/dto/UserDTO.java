@@ -31,7 +31,7 @@ public class UserDTO implements Serializable {
 	
 	private List<Long> exchangesCreatedId = new ArrayList<>();
 	
-	private List<Long> exchangesRecievedId = new ArrayList<>();
+	private List<Long> exchangesReceivedId = new ArrayList<>();
 	
 	public UserDTO() {}
 
@@ -53,7 +53,7 @@ public class UserDTO implements Serializable {
 		entity.getNotifications().forEach(not -> this.notifications.add(new NotificationDTO(not)));
 		entity.getMyBooks().forEach(book -> this.myBooks.add(new BookDTO(book)));
 		entity.getWishList().forEach(book -> this.wishList.add(new BookDTO(book)));
-		entity.getExchangesRecieved().forEach(ex -> this.exchangesRecievedId.add(ex.getId()));
+		entity.getExchangesReceived().forEach(ex -> this.exchangesReceivedId.add(ex.getId()));
 		entity.getExchangesCreated().forEach(ex -> this.exchangesCreatedId.add(ex.getId()));
 	}
 
@@ -109,8 +109,8 @@ public class UserDTO implements Serializable {
 		return exchangesCreatedId;
 	}
 
-	public List<Long> getExchangesRecievedId() {
-		return exchangesRecievedId;
+	public List<Long> getExchangesReceivedId() {
+		return exchangesReceivedId;
 	}
 
 	@Override

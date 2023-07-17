@@ -65,8 +65,8 @@ public class User implements UserDetails, Serializable{
 	@OneToMany(mappedBy = "creator")
 	private List<Exchange> exchangesCreated = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "reciver")
-	private List<Exchange> exchangesRecieved = new ArrayList<>();
+	@OneToMany(mappedBy = "receiver")
+	private List<Exchange> exchangesReceived = new ArrayList<>();
 	
 	public User() {
 	}
@@ -136,8 +136,8 @@ public class User implements UserDetails, Serializable{
 		return exchangesCreated;
 	}
 
-	public List<Exchange> getExchangesRecieved() {
-		return exchangesRecieved;
+	public List<Exchange> getExchangesReceived() {
+		return exchangesReceived;
 	}
 
 	@Override

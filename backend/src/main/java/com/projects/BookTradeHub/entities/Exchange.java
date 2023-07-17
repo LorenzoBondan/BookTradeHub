@@ -33,7 +33,7 @@ public class Exchange implements Serializable {
 	private User creator;
 	
 	@ManyToOne
-    @JoinColumn(name = "reciver_id")
+    @JoinColumn(name = "receiver_id")
 	private User receiver;
 	
 	@ManyToOne
@@ -41,13 +41,13 @@ public class Exchange implements Serializable {
 	private Book bookOffered;
 	
 	@ManyToOne
-    @JoinColumn(name = "book_Recieved_id")
-	private Book bookRecieved;
+    @JoinColumn(name = "book_Received_id")
+	private Book bookReceived;
 	
 	public Exchange() {}
 
 	public Exchange(Long id, Status status, LocalDateTime creationTime, User creator, User receiver, Book bookOffered,
-			Book bookRecieved) {
+			Book bookReceived) {
 		super();
 		this.id = id;
 		this.status = status;
@@ -55,7 +55,7 @@ public class Exchange implements Serializable {
 		this.creator = creator;
 		this.receiver = receiver;
 		this.bookOffered = bookOffered;
-		this.bookRecieved = bookRecieved;
+		this.bookReceived = bookReceived;
 	}
 
 	public Long getId() {
@@ -106,12 +106,12 @@ public class Exchange implements Serializable {
 		this.bookOffered = bookOffered;
 	}
 
-	public Book getBookRecieved() {
-		return bookRecieved;
+	public Book getBookReceived() {
+		return bookReceived;
 	}
 
-	public void setBookRecieved(Book bookRecieved) {
-		this.bookRecieved = bookRecieved;
+	public void setBookReceived(Book bookReceived) {
+		this.bookReceived = bookReceived;
 	}
 
 	@Override

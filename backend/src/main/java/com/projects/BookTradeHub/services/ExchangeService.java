@@ -78,14 +78,14 @@ public class ExchangeService {
 		entity.setStatus(dto.getStatus());
 		entity.setCreationTime(dto.getCreationTime());
 		entity.setBookOffered(bookRepository.getOne(dto.getBookOffered().getId()));
-		entity.setBookRecieved(bookRepository.getOne(dto.getBookRecieved().getId()));
+		entity.setBookReceived(bookRepository.getOne(dto.getBookReceived().getId()));
 		entity.setCreator(userRepository.getOne(dto.getCreator().getId()));
 		entity.setReceiver(userRepository.getOne(dto.getReceiver().getId()));
 	}
 	
 	@Transactional(readOnly = true)
-	public Page<ExchangeDTO> findByStatus(User user, Status status, String title, Pageable pageable) {
-		Page<Exchange> list = repository.findByStatus(user, status, title, pageable);
+	public Page<ExchangeDTO> findByStatus(User user, Status status, Pageable pageable) {
+		Page<Exchange> list = repository.findByStatus(user, status, pageable);
 		return list.map(x -> new ExchangeDTO(x));
 	}
 	

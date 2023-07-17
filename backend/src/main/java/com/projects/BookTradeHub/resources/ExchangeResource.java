@@ -60,38 +60,38 @@ public class ExchangeResource {
 	}
 	
 	@GetMapping(value = "/status/{status}")
-	public ResponseEntity<Page<ExchangeDTO>> findByStatus(@PathVariable("status") Status status, @RequestParam(value = "title", defaultValue = "") String title, Pageable pageable) {
+	public ResponseEntity<Page<ExchangeDTO>> findByStatus(@PathVariable("status") Status status, String title, Pageable pageable) {
 	    User me = authService.authenticated();
-		Page<ExchangeDTO> list = service.findByStatus(me, status, title.trim(), pageable);
+		Page<ExchangeDTO> list = service.findByStatus(me, status, pageable);
 	    return ResponseEntity.ok().body(list);
 	}
 	
 	@PutMapping(value = "/{id}/offerBook/{bookId}")
-	public ResponseEntity<ExchangeDTO> offerBook(@PathVariable Long id, @PathVariable Long bookId)	{
+	public ResponseEntity<ExchangeDTO> offerBook(@PathVariable Long id, @PathVariable Long bookId){
 		ExchangeDTO newDto = service.offerBook(id, bookId);
 		return ResponseEntity.ok().body(newDto);
 	}
 	
 	@PutMapping(value = "/{id}/acceptOffer")
-	public ResponseEntity<ExchangeDTO> acceptOffer(@PathVariable Long id)	{
+	public ResponseEntity<ExchangeDTO> acceptOffer(@PathVariable Long id){
 		ExchangeDTO newDto = service.acceptOffer(id);
 		return ResponseEntity.ok().body(newDto);
 	}
 	
 	@PutMapping(value = "/{id}/rejectOfferAndPendingAgain")
-	public ResponseEntity<ExchangeDTO> rejectOfferAndPendingAgain(@PathVariable Long id)	{
+	public ResponseEntity<ExchangeDTO> rejectOfferAndPendingAgain(@PathVariable Long id){
 		ExchangeDTO newDto = service.rejectOfferAndPendingAgain(id);
 		return ResponseEntity.ok().body(newDto);
 	}
 	
 	@PutMapping(value = "/{id}/rejectOfferAndCancel")
-	public ResponseEntity<ExchangeDTO> rejectOfferAndCancel(@PathVariable Long id)	{
+	public ResponseEntity<ExchangeDTO> rejectOfferAndCancel(@PathVariable Long id){
 		ExchangeDTO newDto = service.rejectOfferAndCancel(id);
 		return ResponseEntity.ok().body(newDto);
 	}
 	
 	@PutMapping(value = "/{id}/cancelExchange")
-	public ResponseEntity<ExchangeDTO> cancelExchange(@PathVariable Long id)	{
+	public ResponseEntity<ExchangeDTO> cancelExchange(@PathVariable Long id){
 		ExchangeDTO newDto = service.cancelExchange(id);
 		return ResponseEntity.ok().body(newDto);
 	}

@@ -39,8 +39,8 @@ public class Book implements Serializable {
 	@OneToMany(mappedBy = "bookOffered")
 	private List<Exchange> exchangesOffered = new ArrayList<>();
 	
-	@OneToMany(mappedBy = "bookRecieved")
-	private List<Exchange> exchangesRecieved = new ArrayList<>();
+	@OneToMany(mappedBy = "bookReceived")
+	private List<Exchange> exchangesReceived = new ArrayList<>();
 
 	public Book() {}
 
@@ -105,8 +105,8 @@ public class Book implements Serializable {
 		return exchangesOffered;
 	}
 
-	public List<Exchange> getExchangesRecieved() {
-		return exchangesRecieved;
+	public List<Exchange> getExchangesReceived() {
+		return exchangesReceived;
 	}
 
 	@Override

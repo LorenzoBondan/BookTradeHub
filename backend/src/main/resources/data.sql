@@ -10,5 +10,8 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 1);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (2, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 1);
 
+INSERT INTO tb_book (title, author, year, img_Url) VALUES ('Book 1', 'Author 1', 2001, 'https://img1.com');
+INSERT INTO tb_book (title, author, year, img_Url) VALUES ('Book 2', 'Author 2', 2002, 'https://img2.com');
+INSERT INTO tb_book (title, author, year, img_Url) VALUES ('Book 3', 'Author 3', 2003, 'https://img3.com');
 
 

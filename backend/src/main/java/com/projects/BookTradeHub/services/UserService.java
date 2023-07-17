@@ -145,9 +145,9 @@ public class UserService implements UserDetailsService {
 			entity.getExchangesCreated().add(exchange);
 		}
 		
-		for (Long exchangeId : dto.getExchangesRecievedId()) {
+		for (Long exchangeId : dto.getExchangesReceivedId()) {
 			Exchange exchange = exchangeRepository.getOne(exchangeId);
-			entity.getExchangesRecieved().add(exchange);
+			entity.getExchangesReceived().add(exchange);
 		}
 
 	}
