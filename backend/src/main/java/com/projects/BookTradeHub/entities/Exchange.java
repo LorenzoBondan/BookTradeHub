@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.springframework.lang.Nullable;
+
 import com.projects.BookTradeHub.entities.enums.Status;
 
 @Entity
@@ -28,18 +30,22 @@ public class Exchange implements Serializable {
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private LocalDateTime creationTime;
 	
+	@Nullable
 	@ManyToOne
     @JoinColumn(name = "creator_id")
 	private User creator;
 	
+	@Nullable
 	@ManyToOne
     @JoinColumn(name = "receiver_id")
 	private User receiver;
 	
+	@Nullable
 	@ManyToOne
     @JoinColumn(name = "book_Offered_id")
 	private Book bookOffered;
 	
+	@Nullable
 	@ManyToOne
     @JoinColumn(name = "book_Received_id")
 	private Book bookReceived;

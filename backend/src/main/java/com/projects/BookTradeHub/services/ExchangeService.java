@@ -143,7 +143,7 @@ public class ExchangeService {
 		try {
 			Exchange entity = repository.getOne(id);
 			if(entity.getBookReceived() != null && entity.getStatus() != Status.CANCELED) {
-				updateStatus(id, Status.ACCEPTED, "The exchange was accepted!");
+				updateStatus(id, Status.ACCEPTED, "The exchange #" + entity.getId() + " was accepted!");
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);
 			}

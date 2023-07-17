@@ -37,10 +37,18 @@ public class ExchangeDTO implements Serializable {
 		this.id = entity.getId();
 		this.status = entity.getStatus();
 		this.creationTime = entity.getCreationTime();
-		this.creator = new UserDTO(entity.getCreator());
-		this.receiver = new UserDTO(entity.getReceiver());
-		this.bookOffered = new BookDTO(entity.getBookOffered());
-		this.bookReceived = new BookDTO(entity.getBookReceived());
+		if(entity.getCreator() != null) {
+			this.creator = new UserDTO(entity.getCreator());
+		}
+		if(entity.getReceiver() != null) {
+			this.receiver = new UserDTO(entity.getReceiver());
+		}
+		if(entity.getBookOffered() != null) {
+			this.bookOffered = new BookDTO(entity.getBookOffered());
+		}
+		if(entity.getBookReceived() != null) {
+			this.bookReceived = new BookDTO(entity.getBookReceived());
+		}		
 	}
 
 	public Long getId() {
