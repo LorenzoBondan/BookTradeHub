@@ -17,12 +17,20 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.projects.BookTradeHub.dto.BookDTO;
+import com.projects.BookTradeHub.dto.NotificationDTO;
 import com.projects.BookTradeHub.dto.RoleDTO;
 import com.projects.BookTradeHub.dto.UserDTO;
 import com.projects.BookTradeHub.dto.UserInsertDTO;
 import com.projects.BookTradeHub.dto.UserUpdateDTO;
+import com.projects.BookTradeHub.entities.Book;
+import com.projects.BookTradeHub.entities.Exchange;
+import com.projects.BookTradeHub.entities.Notification;
 import com.projects.BookTradeHub.entities.Role;
 import com.projects.BookTradeHub.entities.User;
+import com.projects.BookTradeHub.repositories.BookRepository;
+import com.projects.BookTradeHub.repositories.ExchangeRepository;
+import com.projects.BookTradeHub.repositories.NotificationRepository;
 import com.projects.BookTradeHub.repositories.RoleRepository;
 import com.projects.BookTradeHub.repositories.UserRepository;
 import com.projects.BookTradeHub.services.exceptions.DataBaseException;
@@ -41,6 +49,15 @@ public class UserService implements UserDetailsService {
 
 	@Autowired
 	private RoleRepository roleRepository;
+	
+	@Autowired
+	private BookRepository bookRepository;
+	
+	@Autowired
+	private NotificationRepository notificationRepository;
+	
+	@Autowired
+	private ExchangeRepository exchangeRepository;
 	
 	@Transactional(readOnly = true)
 	public Page<UserDTO> findAllPaged(String name, Pageable pageable) {
@@ -106,6 +123,31 @@ public class UserService implements UserDetailsService {
 		for (RoleDTO rolDto : dto.getRoles()) {
 			Role role = roleRepository.getOne(rolDto.getId());
 			entity.getRoles().add(role);
+		}
+		
+		for (NotificationDTO notDto : dto.getNotifications()) {
+			Notification notification = notificationRepository.getOne(notDto.getId());
+			entity.getNotifications().add(notification);
+		}
+		
+		for (BookDTO bookDto : dto.getMyBooks()) {
+			Book book = bookRepository.getOne(bookDto.getId());
+			entity.getMyBooks().add(book);
+		}
+		
+		for (BookDTO bookDto : dto.getWishList()) {
+			Book book = bookRepository.getOne(bookDto.getId());
+			entity.getWishList().add(book);
+		}
+		
+		for (Long exchangeId : dto.getExchangesCreatedId()) {
+			Exchange exchange = exchangeRepository.getOne(exchangeId);
+			entity.getExchangesCreated().add(exchange);
+		}
+		
+		for (Long exchangeId : dto.getExchangesRecievedId()) {
+			Exchange exchange = exchangeRepository.getOne(exchangeId);
+			entity.getExchangesRecieved().add(exchange);
 		}
 
 	}
