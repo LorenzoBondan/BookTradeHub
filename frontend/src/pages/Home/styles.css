@@ -54,7 +54,7 @@
       transform: translateX(0);
     }
     50% {
-      transform: translateX(10px);
+      transform: translateX(-10px);
     }
 }
   
@@ -77,12 +77,12 @@
     background-image: linear-gradient(-90deg, #FF1493 10%, #00FFFF 100%);
     position: relative;
     margin-left: 20px; 
-    animation: arrowAnimation 1s infinite; 
-    left: 118px;
+    animation: arrowAnimation2 1s infinite; 
+    left: 110px;
     top: 5px;
 }
   
-@keyframes arrowAnimation {
+@keyframes arrowAnimation2 {
     0%, 100% {
       transform: translateX(0);
     }

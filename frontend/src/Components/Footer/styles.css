@@ -1,15 +1,15 @@
 .footer-container h6 {
-    color: #F15A23;
+    color: #FF1493;
     font-size: 12px;
 }
 
 .footer-container p {
-    color: black;
+    color: #fff;
     font-size: 12px;
 }
 
 .footer-container h5 {
-    color: #F15A23;
+    color: #FF1493;
     font-size: 14px;
     font-weight: 700;
 }
@@ -33,7 +33,7 @@
 }
 
 .footer-download-zone{
-    border-top: 1px solid #F15A23;
+    border-top: 1px solid #FF1493;
     text-align: center;
     display: flex;
     flex-direction: row;

@@ -14,7 +14,7 @@ import "./styles.css";
 
 function Footer() {
   return (
-    <MDBFooter bgColor="light" className="text-center text-lg-start text-muted">
+    <MDBFooter bgColor="dark" className="text-center text-lg-start text-muted">
       <section className="d-flex justify-content-center justify-content-lg-between p-4 border-bottom footer-container">
         <MDBContainer className="text-center text-md-start mt-2">
           <MDBRow className="mt-2">
@@ -70,7 +70,7 @@ function Footer() {
           </MDBRow>
           <MDBRow>
             <div className="footer-download-zone">
-              <p><i style={{marginRight:"2px"}}><BiDownload/></i> See the source code and download the project here:</p><a href="https://github.com/LorenzoBondan/AgiTask"><p style={{color:"#F15A23"}}>https://github.com/LorenzoBondan/AgiTask</p></a>
+              <p><i style={{marginRight:"2px"}}><BiDownload/></i> See the source code and download the project here:</p><a href="https://github.com/LorenzoBondan/AgiTask"><p style={{color:"#00FFFF"}}>https://github.com/LorenzoBondan/AgiTask</p></a>
             </div>
           </MDBRow>
         </MDBContainer>

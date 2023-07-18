@@ -1,0 +1,18 @@
+.colorful-text {
+    font-size: 30px;
+    font-weight: bold;
+}
+  
+@keyframes colorAnimation {
+    0% {
+      color: #FF1493; 
+    }
+    100% {
+      color: rgba(255, 255, 255, 0.5);
+    }
+}
+  
+.animated-letter {
+    animation: colorAnimation 13s infinite; 
+}
+  
