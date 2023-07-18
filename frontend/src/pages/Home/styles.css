@@ -10,10 +10,23 @@
 
 .home-content-container{
     text-align: center;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .home-content-container h1{
     margin-bottom: 30px;
+    font-size: 60px;
+    font-family: 'Popins';
+}
+
+.home-content-container p{
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-family: 'Raleway';
+    color: rgba(255, 255, 255, 0.5);
 }
 
 .arrow-container {
