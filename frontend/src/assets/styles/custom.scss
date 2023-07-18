@@ -1,0 +1,12 @@
+$theme-colors: (
+    'primary': #FF1493,
+    'secondary': #00FFFF,
+    'ternary': #FFFF00,
+    'quaternary': #00FF00,
+    'quinternary': #FF00FF
+);
+
+$body-bg: #060009; /* cor de fundo da página */
+$body-color: #eaeaea;
+
+@import '~bootstrap/scss/bootstrap.scss';

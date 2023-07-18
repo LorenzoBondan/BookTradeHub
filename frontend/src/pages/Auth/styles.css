@@ -1,0 +1,32 @@
+.auth-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.auth-form-container {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  .auth-form-container {
+    width: 480px;
+  }
+}
+
+@media (min-width: 768px) {
+  .auth-form-container {
+    width: 550px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .auth-container {
+    align-items: center;
+    padding: 40px;
+    margin-top: 0;
+    height: 100vh;
+  }
+}

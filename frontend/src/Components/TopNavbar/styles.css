@@ -1,0 +1,124 @@
+.top-navbar-main-container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(2px);
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
+}
+
+.tasks-container-navbar{
+    padding: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: 60px;
+    width: 100%;
+}
+
+.top-navbar-brand{
+    display: flex;
+    align-items: center;
+}
+
+.top-navbar-brand h4{
+    margin-bottom: 0;
+    margin-left: 5px;
+    font-weight: 700;
+    color: #00FFFF;
+}
+
+.top-navbar-profile-container{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+
+.tasks-container-second{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 30%;
+}
+
+.tasks-container-navbar img{
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 5px;
+    border: 2px solid #eaeaea;
+}
+
+.tasks-container-navbar h1{
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 0;
+    border-right: 1px dashed #eaeaea;
+    height: 100%;
+    padding-right: 12px;
+}
+
+.tasks-container-navbar h1:hover{
+    color: #00FFFF;
+}
+
+.tasks-container-second p {
+    margin-bottom: 0;
+    font-size: 20px;
+    margin-right: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+}
+
+.tasks-container-second p:hover {
+    cursor: pointer;
+}
+
+.top-navbar-buttons-container{
+    display: flex;
+    align-items: center;
+}
+
+.top-navbar-icon{
+    font-size: 24px;
+    margin-right: 5px;
+}
+
+.top-navbar-icon:hover{
+    color: #00FFFF;
+    transform: scale(1.1);
+}
+
+.top-navbar-notifications-container{
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    width: 100%;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 10px;
+    right: 185px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.top-navbar-login-container{
+    width: 5%;
+}
+
+.top-navbar-login-container p{
+    margin-bottom: 0;
+}
