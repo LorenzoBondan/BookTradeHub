@@ -6,6 +6,7 @@ import { Redirect, Route, Router, Switch } from "react-router-dom";
 import { isAuthenticated } from "util/auth";
 import history from "util/history";
 import background from 'assets/images/background.png';
+import Home from "pages/Home";
 
 const Routes = () => {
 
@@ -19,13 +20,13 @@ const Routes = () => {
 
                 <Switch>
                     {isAuthenticated() ? (
-                        <Redirect from='/' to='/tasks' exact />
+                        <Redirect from='/' to='/exchanges' exact />
                     ) : (
                         <Redirect from='/' to='/home' exact />
                     )}
                     
                     <Route path="/home" exact>
-
+                        <Home/>
                     </Route>
 
                     <Redirect from='/auth' to='/auth/login' exact />
