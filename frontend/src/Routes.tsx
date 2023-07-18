@@ -7,6 +7,7 @@ import { isAuthenticated } from "util/auth";
 import history from "util/history";
 import background from 'assets/images/background.png';
 import Home from "pages/Home";
+import Exchanges from "pages/Exchanges";
 
 const Routes = () => {
 
@@ -40,29 +41,23 @@ const Routes = () => {
                     </Route>
 
                     {isAuthenticated() && (
-                        <div className="flex-direction-column">
-                            <Switch>
-                                <Route path="/tasks" exact>
+                        <Switch>
+                            <Route path="/exchanges" exact>
+                                <Exchanges/>
+                            </Route>
 
-                                </Route>
+                            <Route path="/exchanges/:exchangeId" exact>
 
-                                <Route path="/tasks/:taskId" exact>
+                            </Route>
 
-                                </Route>
+                            <Route path="/create" exact>
 
-                                <Route path="/create" exact>
+                            </Route>
 
-                                </Route>
+                            <Route path="/profile" exact>
 
-                                <Route path="/profile" exact>
-
-                                </Route>
-
-                                <Route path="/createGroup" exact>
-
-                                </Route>
-                            </Switch>
-                        </div>
+                            </Route>
+                        </Switch>
                     )}
                 </Switch>
             </div>
