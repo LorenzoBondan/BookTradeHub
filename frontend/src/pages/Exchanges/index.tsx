@@ -11,7 +11,7 @@ type StatusOption = {
     value: string;
     label: string;
     color?: string;
-  };
+};
 
 const Exchanges = () => {
 
@@ -110,8 +110,8 @@ const Exchanges = () => {
                         {exchanges?.numberOfElements !== 0 && 
                             <div className='exchanges-zone'>
                                 {user && exchanges?.content.map(exchange => (
-                                    <div className='exchange-column'>
-                                      <ExchangeCard exchange={exchange} onChangeStatus={getExchangesByStatus} color={backgroundColor}/>
+                                    <div className='exchange-column' key={exchange.id}>
+                                      <ExchangeCard exchange={exchange} user={user} onChangeStatus={getExchangesByStatus} color={backgroundColor}/>
                                     </div>
                                 ))}
                             </div>

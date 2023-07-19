@@ -3,9 +3,9 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    height: 350px;
+    height: 300px;
     width: 100%;
-    border-radius: 0;
+    border-radius: 0 !important;
 }
 
 .exchange-card-content-container{
@@ -24,27 +24,27 @@
     justify-content: center;
     width: 50%;
     height: 100%;
+    padding: 5px;
 }
 
 .exchange-card-creator-container{
     border-right: 1px solid #eaeaea;
 }
 
-.creator-container{
+.creator-container, .receiver-container{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-evenly;
     width: 100%;
-    height: 85%;
 }
 
-.creator-container h4{
+.creator-container h4, .receiver-container h4{
     color: #eaeaea70;
     font-size: 0.9em;
 }
 
-.creator-info, .creator-book-info{
+.creator-info, .creator-book-info, .receiver-info, .receiver-book-info{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,15 +53,15 @@
     text-align: center;
 }
 
-.creator-info img{
-    height: 60px;
-    width: 60px;
+.creator-info img, .receiver-info img{
+    height: 70px;
+    width: 70px;
     border-radius: 50%;
 }
 
 .image-wrapper {
-    width: 66px;
-    height: 66px; 
+    width: 76px;
+    height: 76px; 
     border-radius: 50%;
     overflow: hidden; 
     background: linear-gradient(270deg, #FF1493 10%, #00FFFF 100%);
@@ -71,17 +71,93 @@
     margin-bottom: 5px;
 }
 
-.creator-book-info img{
-    height: 60px;
-    width: 60px;
+.book-image-wrapper {
+    width: auto;
+    height: 126px; 
+    overflow: hidden; 
+    background: linear-gradient(270deg, #00FFFF 10%, #FF1493 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
-.creator-info h5, .creator-book-info h5{
+.creator-book-info img, .receiver-book-info img{
+    height: 120px;
+    width: auto;
+}
+
+.creator-info h5,  .receiver-info h5 {
     font-family: 'Raleway';
 }
 
-.creator-info p, .creator-book-info p{
+.creator-book-info h4, .receiver-book-info h4{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.creator-book-info h5, .receiver-book-info h5{
+    font-family: 'Raleway';
+    font-size: 1rem;
+}
+
+.creator-info p, .creator-book-info p, .receiver-info p, .receiver-book-info p{
     color: #9E9E9E;
     font-size: 0.8em;
     margin-bottom: 2px;
+}
+
+/* buttons container */
+
+.exchange-card-buttons-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 30px;
+}
+
+.buttons{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+    padding: 10px;
+    border-radius: 0px 0px 10px 10px !important;
+    border-top: none !important;
+}
+
+.buttons p{
+    margin-bottom: 0;
+}
+
+.exchange-card-button{
+    font-size: 0.9rem;
+    padding: 5px;
+    padding-bottom: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.exchange-card-button:hover{
+    transform: scale(1.05);
+}
+
+.accept-button{
+    color: #00FF00;
+    background-color: #00ff001e;
+}
+
+.reject-button{
+    color: #FFA500;
+    background-color: #FFA5001e;
+}
+
+.cancel-button{
+    color: #CD0000;
+    background-color: #CD00001e;
 }

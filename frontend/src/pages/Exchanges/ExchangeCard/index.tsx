@@ -1,18 +1,29 @@
-import { Exchange } from 'types';
+import { Exchange, User } from 'types';
 import { useState, useEffect } from 'react';
 import './styles.css';
 import { IoArrowRedo } from 'react-icons/io5';
 import { IoArrowUndo } from 'react-icons/io5';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
+import { MdDone } from 'react-icons/md';
+import { IoMdClose } from 'react-icons/io';
+import { FcCancel } from 'react-icons/fc';
 
 type Props = {
     exchange: Exchange;
     onChangeStatus: Function;
     color: string;
+    user: User;
 }
 
-const ExchangeCard = ({ exchange, onChangeStatus, color }: Props) => {
+const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
+
+    const [status, setStatus] = useState<string>();
+
+    useEffect(() => {
+        setStatus(exchange.status);
+    }, [exchange]);
+
     const [totalExchangesCompleted, setTotalExchangesCompleted] = useState<number>(0); // Inicialize o estado com 0
   
     useEffect(() => {
@@ -46,6 +57,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color }: Props) => {
     }, [exchange.creator.exchangesCreatedId, exchange.creator.exchangesReceivedId]);
 
     return(
+        <>
         <div className='exchange-card-container base-card'>
             <div className='border-colored' style={{height:"100%", width:"3px", backgroundColor: color}}></div>
             <div className='exchange-card-content-container'>
@@ -60,44 +72,78 @@ const ExchangeCard = ({ exchange, onChangeStatus, color }: Props) => {
                             <p>{exchange.creator.email}</p>
                             <p>Total Exchanges Completed: <strong>{totalExchangesCompleted}</strong></p>
                         </div>
+                        <IoArrowRedo style={{color: color, fontSize:"2rem", margin:"10px"}}/>
                         <div className='creator-book-info'>
                             <h4>Book Offered</h4>
-                            <img src={exchange.bookOffered.imgUrl} alt="" />
+                            <div className="book-image-wrapper">
+                                <img src={exchange.bookOffered.imgUrl} alt="" />
+                            </div>
                             <h5>{exchange.bookOffered.title}</h5>
                             <p>{exchange.bookOffered.author}</p>
                             <p>{exchange.bookOffered.year}</p>
                         </div>
                     </div>
-                    <div className="arrow-rigth"><IoArrowRedo style={{color: color, fontSize:"3rem"}}/></div>
                 </div>
                 {exchange.receiver && 
                     <div className='exchange-card-receiver-container'>
                         <div className='receiver-container'>
-                            <div className='receiver-info'>
-                                <h4>Receiver</h4>
-                                <div className="image-wrapper">
-                                    <img src={exchange.creator.imgUrl} alt="" />
-                                    <div className="border-overlay"></div>
-                                </div>
-                                <h5>{exchange.receiver.name}</h5>
-                                <p>{exchange.receiver.email}</p>
-                                <p>Total Exchanges Completed: <strong>{totalExchangesCompleted}</strong></p>
-                            </div>
                             {exchange.bookReceived && 
                                 <div className='receiver-book-info'>
                                     <h4>Book Received</h4>
-                                    <img src={exchange.bookReceived.imgUrl} alt="" />
+                                    <div className="book-image-wrapper">
+                                        <img src={exchange.bookReceived.imgUrl} alt="" />
+                                    </div>
                                     <h5>{exchange.bookReceived.title}</h5>
                                     <p>{exchange.bookReceived.author}</p>
                                     <p>{exchange.bookReceived.year}</p>
                                 </div>
                             }
+                            <IoArrowUndo style={{color: color, fontSize:"2rem", margin:"10px"}}/>
+                            <div className='receiver-info'>
+                                <h4>Receiver</h4>
+                                <div className="image-wrapper">
+                                    <img src={exchange.receiver.imgUrl} alt="" />
+                                </div>
+                                <h5>{exchange.receiver.name}</h5>
+                                <p>{exchange.receiver.email}</p>
+                                <p>Total Exchanges Completed: <strong>{totalExchangesCompleted}</strong></p>
+                            </div>
                         </div>
-                        <div className="arrow-left"><IoArrowUndo style={{color: color, fontSize:"3rem"}}/></div>
                     </div>
                 }
             </div>
         </div>
+        {status === "DISPONIBLE" && exchange.creator.id !== user.id && 
+            <div className='exchange-card-buttons-container'>
+                <div className='buttons base-card'>
+                    <p>DISPONIBLE</p>
+                </div>
+            </div>
+        }
+        {status === "PENDING" && exchange.creator.id === user.id &&
+            <div className='exchange-card-buttons-container'>
+                <div className='buttons base-card'>
+                    <p className='exchange-card-button accept-button'><MdDone/> Accept Exchange</p>
+                    <p className='exchange-card-button reject-button'><IoMdClose/> Reject Exchange</p>
+                    <p className='exchange-card-button cancel-button'><FcCancel/> Cancel Exchange</p>
+                </div>
+            </div>
+        }
+        {status === "ACCEPTED" && 
+            <div className='exchange-card-buttons-container'>
+                <div className='buttons'>
+                    <p>ACCEPTED</p>
+                </div>
+            </div>
+        }
+        {status === "REJECTED" && 
+            <div className='exchange-card-buttons-container'>
+                <div className='buttons'>
+                    <p>REJECTED</p>
+                </div>
+            </div>
+        }
+        </>
     );
 }
 
