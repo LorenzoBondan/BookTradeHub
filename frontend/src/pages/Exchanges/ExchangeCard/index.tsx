@@ -75,6 +75,36 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
             })
     }
 
+    const rejectOffer = () => {
+        if(!window.confirm("Are you sure that you want to reject the exchange?")){ 
+            return;
+        }
+
+        if(window.confirm("Do you want to offer this user a new exchange possibility?")){ 
+            const params : AxiosRequestConfig = {
+                method:"PUT",
+                url: `/exchanges/${exchange.id}/rejectOfferAndPendingAgain`,
+                withCredentials:true
+              }
+              requestBackend(params) 
+                .then(response => {
+                    onChangeStatus();
+                    toast.success("Exchanged is now pending again!")
+                })
+        }
+
+        const params : AxiosRequestConfig = {
+            method:"PUT",
+            url: `/exchanges/${exchange.id}/rejectOfferAndCancel`,
+            withCredentials:true
+          }
+          requestBackend(params) 
+            .then(response => {
+                onChangeStatus();
+                toast.success("Exchanged canceled!")
+            })
+    }
+
     return(
         <>
         <div className='exchange-card-container base-card'>
@@ -106,7 +136,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                 {exchange.receiver && 
                     <div className='exchange-card-receiver-container'>
                         <div className='receiver-container'>
-                            {exchange.bookReceived && 
+                            {exchange.bookReceived ? ( 
                                 <div className='receiver-book-info'>
                                     <h4>Book Received</h4>
                                     <div className="book-image-wrapper">
@@ -116,7 +146,11 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                                     <p>{exchange.bookReceived.author}</p>
                                     <p>{exchange.bookReceived.year}</p>
                                 </div>
-                            }
+                            ) : (
+                                <div className='receiver-book-info'>
+                                    <h5>Waiting for an offer...</h5>
+                                </div>
+                            )}
                             <IoArrowUndo style={{color: color, fontSize:"2rem", margin:"10px"}}/>
                             <div className='receiver-info'>
                                 <h4>Receiver</h4>
@@ -143,7 +177,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
             <div className='exchange-card-buttons-container'>
                 <div className='buttons base-card'>
                     <p className='exchange-card-button accept-button' onClick={acceptOffer}><MdDone/> Accept Exchange</p>
-                    <p className='exchange-card-button reject-button'><IoMdClose/> Reject Exchange</p>
+                    <p className='exchange-card-button reject-button' onClick={rejectOffer}><IoMdClose/> Reject Exchange</p>
                     <p className='exchange-card-button cancel-button'><FcCancel/> Cancel Exchange</p>
                 </div>
             </div>
