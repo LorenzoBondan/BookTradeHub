@@ -1,0 +1,39 @@
+.exchange-card-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    height: 350px;
+    width: 100%;
+    border-radius: 0;
+}
+
+.exchange-card-content-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.exchange-card-creator-container, .exchange-card-receiver-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+}
+
+.creator-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.creator-info img{
+    height: 40px;
+    width: 40px;
+}

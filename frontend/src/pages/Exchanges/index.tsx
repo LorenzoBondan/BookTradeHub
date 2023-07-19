@@ -5,6 +5,7 @@ import { getTokenData } from 'util/auth';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import { BsListTask } from 'react-icons/bs';
+import ExchangeCard from './ExchangeCard';
 
 type StatusOption = {
     value: string;
@@ -109,7 +110,9 @@ const Exchanges = () => {
                         {exchanges?.numberOfElements !== 0 && 
                             <div className='exchanges-zone'>
                                 {user && exchanges?.content.map(exchange => (
-                                    <p>{exchange.status}</p>
+                                    <div className='exchange-column'>
+                                      <ExchangeCard exchange={exchange} onChangeStatus={getExchangesByStatus} color={backgroundColor}/>
+                                    </div>
                                 ))}
                             </div>
                         }
