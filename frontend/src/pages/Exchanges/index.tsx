@@ -47,9 +47,8 @@ const Exchanges = () => {
     const allStatus: StatusOption[] = [
         { value: 'DISPONIBLE', label: 'Disponible' , color:'#00FFFF'},
         { value: 'PENDING', label: 'Pending' , color:'#FFFF00'},
-        { value: 'ACCEPTED', label: 'Accepted' , color:'#00FF00'},
         { value: 'REJECTED', label: 'Rejected' , color:'#FFA500'},
-        { value: 'COMPLETED', label: 'Completed' , color:'#0040FF'},
+        { value: 'COMPLETED', label: 'Completed' , color:'#00FF00'},
         { value: 'CANCELED', label: 'Canceled' , color: '#FF1493'},
       ];
 
