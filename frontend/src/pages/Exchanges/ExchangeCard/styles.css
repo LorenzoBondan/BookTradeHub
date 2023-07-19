@@ -147,6 +147,11 @@
     transform: scale(1.05);
 }
 
+.offer-button{
+    color: #00FFFF;
+    background-color: #00FFFF1e;
+}
+
 .accept-button{
     color: #00FF00;
     background-color: #00ff001e;

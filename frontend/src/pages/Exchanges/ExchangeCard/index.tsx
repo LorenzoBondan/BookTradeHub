@@ -1,4 +1,4 @@
-import { Exchange, User } from 'types';
+import { Book, Exchange, User } from 'types';
 import { useState, useEffect } from 'react';
 import './styles.css';
 import { IoArrowRedo } from 'react-icons/io5';
@@ -8,7 +8,10 @@ import { requestBackend } from 'util/requests';
 import { MdDone } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { FcCancel } from 'react-icons/fc';
+import { MdOutlineChangeCircle } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import Modal from 'react-modal';
+import Select from "react-select";
 
 type Props = {
     exchange: Exchange;
@@ -56,6 +59,39 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
         ...exchange.creator.exchangesReceivedId,
       ]);
     }, [exchange.creator.exchangesCreatedId, exchange.creator.exchangesReceivedId]);
+
+    // DISPONIBLE 
+
+    const [bookId, setBookId] = useState<number | undefined>();
+
+    const handleSelectChange = (selectedOption: Book | null) => {
+        setBookId(selectedOption ? selectedOption.id : undefined);
+    };
+
+    const [modalIsOpen, setIsOpen] = useState(false);
+
+    function openModal(){
+        setIsOpen(true);
+    }
+
+    function closeModal(){
+        setIsOpen(false);
+    }
+
+    const offerExchange = () => {
+
+        const params : AxiosRequestConfig = {
+            method:"PUT",
+            url: `/exchanges/${exchange.id}/offerBook/${bookId}`,
+            withCredentials:true
+          }
+          requestBackend(params) 
+            .then(response => {
+                console.log(response.data);
+                
+                toast.success("Offer maded!")
+            })
+    }
 
     // PENDING 
     const acceptOffer = () => {
@@ -190,11 +226,37 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
         {status === "DISPONIBLE" && exchange.creator.id !== user.id && 
             <div className='exchange-card-buttons-container'>
                 <div className='buttons base-card'>
-                    <p>DISPONIBLE</p>
+                    <p className='exchange-card-button offer-button' onClick={openModal}><MdOutlineChangeCircle/> Offer Exchange</p>
+                    <Modal 
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        contentLabel="Example Modal"
+                        overlayClassName="modal-overlay"
+                        className="modal-content"
+                    >
+                        <form onSubmit={offerExchange} className="work-edit-form">
+                            <h4>Add or Remove Followers</h4>
+                            <div className="work-edit-input-container">
+                                <label htmlFor="">Your Books</label>
+                                <Select 
+                                    options={user.myBooks}
+                                    classNamePrefix="users-crud-select"
+                                    placeholder="Your Books"
+                                    getOptionLabel={(book: Book) => book.title}
+                                    getOptionValue={(book: Book) => book.id.toString()}
+                                    onChange={handleSelectChange}
+                                />    
+                            </div>
+                            <div className="work-edit-buttons">
+                                <button onClick={closeModal} className="btn">Close</button>
+                                <button className="btn">Submit</button>
+                            </div>
+                        </form>
+                    </Modal>
                 </div>
             </div>
         }
-        {status === "PENDING" && exchange.creator.id === user.id &&
+        {status === "PENDING" && exchange.creator.id === user.id ? ( 
             <div className='exchange-card-buttons-container'>
                 <div className='buttons base-card'>
                     <p className='exchange-card-button accept-button' onClick={acceptOffer}><MdDone/> Accept Exchange</p>
@@ -202,7 +264,13 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                     <p className='exchange-card-button cancel-button' onClick={cancelOffer}><FcCancel/> Cancel Exchange</p>
                 </div>
             </div>
-        }
+        ): (
+            <div className='exchange-card-buttons-container'>
+                <div className='buttons base-card'>
+                    <p>Waiting for the other user awnser</p>
+                </div>
+            </div>
+        )}
         {status === "ACCEPTED" && 
             <div className='exchange-card-buttons-container'>
                 <div className='buttons'>
