@@ -19,7 +19,22 @@ import history from 'util/history';
 
 const TopNavbar = () => {
 
-    const [user, setUser] = useState<User | null>(null);
+  const { authContextData, setAuthContextData } = useContext(AuthContext);
+  const [user, setUser] = useState<User | null>(null);
+
+  useEffect(() => {
+      if(isAuthenticated()){
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData()
+        })
+      }
+      else{
+        setAuthContextData({
+          authenticated: false,
+        })
+      }
+    }, [setAuthContextData]);
 
     const getUser = useCallback(async () => {
       try {
@@ -39,7 +54,25 @@ const TopNavbar = () => {
         console.log("Error: " + error);
       }
     }, []);
+
+    useEffect(() => {
+      if (authContextData.authenticated) {
+        getUser();
+      }
+    }, [authContextData.authenticated, getUser]);
+
+    const handleLogoutClick = (event : React.MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault(); 
+      
+      removeAuthData(); 
   
+      setAuthContextData({
+        authenticated: false,
+      })
+  
+      history.replace('/'); 
+    }
+
     const [showNotifications, setShowNotifications] = useState(false);
     
     const openAndCloseNotifications = () => {
@@ -49,38 +82,6 @@ const TopNavbar = () => {
         else{
           setShowNotifications(true);
         }
-    }
-
-    useEffect(() => {
-      getUser();
-    }, [getUser]);
-
-    const { authContextData, setAuthContextData } = useContext(AuthContext);
-
-    useEffect(() => {
-        if(isAuthenticated()){
-          setAuthContextData({
-            authenticated: true,
-            tokenData: getTokenData()
-          })
-        }
-        else{
-          setAuthContextData({
-            authenticated: false,
-          })
-        }
-      }, [setAuthContextData]);
-
-      const handleLogoutClick = (event : React.MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault(); 
-        
-        removeAuthData(); 
-    
-        setAuthContextData({
-          authenticated: false,
-        })
-    
-        history.replace('/'); 
     }
 
     return(
@@ -98,6 +99,11 @@ const TopNavbar = () => {
                       <h1>{user?.name}</h1>
                   </NavLink>
                   <div className='top-navbar-buttons-container'>
+                    { hasAnyRoles(['ROLE_ADMIN']) && ( 
+                      <NavLink to="/admin" className="admin-nav-item">
+                          <p><MdAdminPanelSettings className='top-navbar-icon'/></p>
+                      </NavLink>
+                    )}
                     <p onClick={() => openAndCloseNotifications()}>
                       <IoIosNotificationsOutline className='top-navbar-icon' />
                       {user && user?.notifications.filter(notification => !notification.read).length > 0 && <span className='notification-badge'>{user?.notifications.filter(notification => !notification.read).length}</span>}
@@ -108,11 +114,6 @@ const TopNavbar = () => {
                     <NavLink to="/exchanges">
                         <p><TbArrowsExchange className='top-navbar-icon'/></p>
                     </NavLink>
-                    { hasAnyRoles(['ROLE_ADMIN']) && ( 
-                      <NavLink to="/admin" className="admin-nav-item">
-                          <p><MdAdminPanelSettings className='top-navbar-icon'/></p>
-                      </NavLink>
-                    )}
                     <NavLink to="/" className="login-nav-item" onClick={handleLogoutClick}>
                       <p><HiLogout className='top-navbar-icon'/></p>
                     </NavLink>
