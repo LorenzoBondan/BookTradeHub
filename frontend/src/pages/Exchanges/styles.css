@@ -8,6 +8,46 @@
     height: auto;
 }
 
+.exchanges-filter-container{
+    padding: 20px 10px 10px 10px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.exchanges-filter-container h2{
+    margin-right: 10px;
+    font-family: 'Poppins';
+    font-size: 1.3em;
+    margin-bottom: 0;
+}
+
+.status-input{
+    border-radius: 10px;
+    padding-left: 12px;
+    font-size: 1em;
+    letter-spacing: -0.015em;
+    height: 40px;
+    border: #9E9E9E 1px solid;
+    padding-right: 20px;
+    background-color: transparent;
+    width: 20%;
+    font-family: 'Poppins';
+}
+
+.status-input option{
+    color: #eaeaea !important;
+    background: #060009 !important;
+}
+
+.separator{
+    height: 1px;
+    width: 100%;
+    background-color: #eaeaea;
+    margin: 20px 0 35px 0;
+}
+
 .user-exchanges-container{
     display: flex;
     flex-direction: column;
@@ -54,8 +94,24 @@
 .exchanges-zone{
     display: flex;
     flex-direction: column;
-    height: 500px;
+    height: 600px;
     overflow-y: scroll;
+}
+
+.exchanges-status ::-webkit-scrollbar {
+    width: 10px; 
+}
+  
+.exchanges-status ::-webkit-scrollbar-thumb {
+    background-color: #fff; 
+}
+  
+.exchanges-status ::-webkit-scrollbar-thumb:hover {
+    background-color: #a8a6a6; 
+}
+  
+.exchanges-status ::-webkit-scrollbar-track {
+    background-color: transparent; 
 }
 
 @media(min-width:576px){
@@ -84,12 +140,12 @@
     .user-exchanges-container{
         flex-direction: row;
         align-items: flex-start;
-        justify-content: space-between;
+        justify-content: center;
     }
     
     .exchanges-status{
         margin-bottom: 0px;
-        width: 19%;
+        width: 50%;
     }
     
 }

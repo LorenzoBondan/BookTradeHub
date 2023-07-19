@@ -89,7 +89,8 @@ const Exchanges = () => {
     return(
         <div className='exchanges-container'>
             <div className='exchanges-filter-container'>
-                <select className='base-input month-input' value={status} onChange={handleSelectChange}>
+                <h2>Status</h2>
+                <select className='status-input' value={status} onChange={handleSelectChange} style={{color: backgroundColor}}>
                     {allStatus.map((status) => (
                     <option key={status.value} value={status.value}>
                         {status.label}
@@ -97,7 +98,7 @@ const Exchanges = () => {
                 ))}
                 </select>
             </div>
-
+            <div className='separator'></div>
             <div className='user-exchanges-container'>
                 <div className='exchanges-status'>
                     <div className='exchanges-status-top' style={{backgroundColor: backgroundColor }}>
