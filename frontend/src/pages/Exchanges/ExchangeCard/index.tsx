@@ -8,6 +8,7 @@ import { requestBackend } from 'util/requests';
 import { MdDone } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { FcCancel } from 'react-icons/fc';
+import { toast } from 'react-toastify';
 
 type Props = {
     exchange: Exchange;
@@ -55,6 +56,24 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
         ...exchange.creator.exchangesReceivedId,
       ]);
     }, [exchange.creator.exchangesCreatedId, exchange.creator.exchangesReceivedId]);
+
+    // PENDING 
+    const acceptOffer = () => {
+        if(!window.confirm("Are you sure that you want to accept the exchange?")){ 
+            return;
+        }
+
+        const params : AxiosRequestConfig = {
+            method:"PUT",
+            url: `/exchanges/${exchange.id}/acceptOffer`,
+            withCredentials:true
+          }
+          requestBackend(params) 
+            .then(response => {
+                onChangeStatus();
+                toast.success("Exchanged accepted!")
+            })
+    }
 
     return(
         <>
@@ -123,7 +142,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
         {status === "PENDING" && exchange.creator.id === user.id &&
             <div className='exchange-card-buttons-container'>
                 <div className='buttons base-card'>
-                    <p className='exchange-card-button accept-button'><MdDone/> Accept Exchange</p>
+                    <p className='exchange-card-button accept-button' onClick={acceptOffer}><MdDone/> Accept Exchange</p>
                     <p className='exchange-card-button reject-button'><IoMdClose/> Reject Exchange</p>
                     <p className='exchange-card-button cancel-button'><FcCancel/> Cancel Exchange</p>
                 </div>
