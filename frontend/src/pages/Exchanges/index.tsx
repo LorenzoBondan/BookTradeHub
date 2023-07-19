@@ -101,21 +101,20 @@ const Exchanges = () => {
             <div className='separator'></div>
             <div className='user-exchanges-container'>
                 <div className='exchanges-status'>
-                    <div className='exchanges-status-top' style={{backgroundColor: backgroundColor }}>
-                        <div className='exchanges-status-title'>
-                            <h3>Exchanges {status.toLowerCase()}</h3>
-                            <h3><BsListTask style={{marginRight:"3px"}}/>{exchanges?.numberOfElements}</h3>
-                        </div>
-                        {exchanges?.numberOfElements !== 0 && 
-                            <div className='exchanges-zone'>
-                                {user && exchanges?.content.map(exchange => (
-                                    <div className='exchange-column' key={exchange.id}>
-                                      <ExchangeCard exchange={exchange} user={user} onChangeStatus={getExchangesByStatus} color={backgroundColor}/>
-                                    </div>
-                                ))}
-                            </div>
-                        }
+                    <div className='exchanges-status-top' style={{backgroundColor: backgroundColor }}></div>
+                    <div className='exchanges-status-title'>
+                      <h3>Exchanges {status.toLowerCase()}</h3>
+                      <h3><BsListTask style={{marginRight:"3px"}}/>{exchanges?.numberOfElements}</h3>
                     </div>
+                    {exchanges?.numberOfElements !== 0 && 
+                      <div className='exchanges-zone'>
+                        {user && exchanges?.content.map(exchange => (
+                          <div className='exchange-column' key={exchange.id}>
+                            <ExchangeCard exchange={exchange} user={user} onChangeStatus={getExchangesByStatus} color={backgroundColor}/>
+                          </div>
+                        ))}
+                      </div>
+                    }
                 </div>
             </div>
         </div>

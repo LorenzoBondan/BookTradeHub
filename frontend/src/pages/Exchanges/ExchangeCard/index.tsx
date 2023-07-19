@@ -234,20 +234,20 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                         overlayClassName="modal-overlay"
                         className="modal-content"
                     >
-                        <form onSubmit={offerExchange} className="work-edit-form">
-                            <h4>Add or Remove Followers</h4>
-                            <div className="work-edit-input-container">
+                        <form onSubmit={offerExchange} className="my-books-form">
+                            <h4>Offer Exchange</h4>
+                            <div className="my-books-input-container">
                                 <label htmlFor="">Your Books</label>
                                 <Select 
                                     options={user.myBooks}
-                                    classNamePrefix="users-crud-select"
+                                    classNamePrefix="my-books-select"
                                     placeholder="Your Books"
                                     getOptionLabel={(book: Book) => book.title}
                                     getOptionValue={(book: Book) => book.id.toString()}
                                     onChange={handleSelectChange}
                                 />    
                             </div>
-                            <div className="work-edit-buttons">
+                            <div className="my-books-buttons">
                                 <button onClick={closeModal} className="btn">Close</button>
                                 <button className="btn">Submit</button>
                             </div>
@@ -256,7 +256,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                 </div>
             </div>
         }
-        {status === "PENDING" && exchange.creator.id === user.id ? ( 
+        {status === "PENDING" && (exchange.creator.id === user.id ? ( 
             <div className='exchange-card-buttons-container'>
                 <div className='buttons base-card'>
                     <p className='exchange-card-button accept-button' onClick={acceptOffer}><MdDone/> Accept Exchange</p>
@@ -264,13 +264,13 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                     <p className='exchange-card-button cancel-button' onClick={cancelOffer}><FcCancel/> Cancel Exchange</p>
                 </div>
             </div>
-        ): (
+        ) : (
             <div className='exchange-card-buttons-container'>
                 <div className='buttons base-card'>
                     <p>Waiting for the other user awnser</p>
                 </div>
             </div>
-        )}
+        ))}
         {status === "ACCEPTED" && 
             <div className='exchange-card-buttons-container'>
                 <div className='buttons'>

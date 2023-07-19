@@ -166,3 +166,61 @@
     color: #CD0000;
     background-color: #CD00001e;
 }
+
+/* modal */
+
+.my-books-form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 10px;
+    color: black;
+}
+
+.my-books-form h4{
+    font-weight: 700;
+    margin-bottom: 15px;
+    width: 100%;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ABABAB;
+}
+
+.my-books-input-container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.my-books-input-container input{
+    width: 300px !important;
+}
+
+.my-books-input-container label{
+    margin-right: 5px;
+}
+
+.my-books-buttons{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.my-books-buttons button{
+    width: 49%;
+    border-bottom: 1px solid #ABABAB;
+    font-weight: 700;
+    border-radius: 0;
+    color: black;
+}
+
+.my-books-buttons button:hover{
+    background-color: #e7e5e54d;
+    color: black;
+}
