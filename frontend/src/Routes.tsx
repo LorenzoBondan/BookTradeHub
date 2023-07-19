@@ -8,6 +8,7 @@ import history from "util/history";
 import background from 'assets/images/background.png';
 import Home from "pages/Home";
 import Exchanges from "pages/Exchanges";
+import DisponibleExchanges from "pages/DisponibleExchanges";
 
 const Routes = () => {
 
@@ -44,6 +45,10 @@ const Routes = () => {
                         <Switch>
                             <Route path="/exchanges" exact>
                                 <Exchanges/>
+                            </Route>
+
+                            <Route path="/disponibleExchanges" exact>
+                                <DisponibleExchanges/>
                             </Route>
 
                             <Route path="/exchanges/:exchangeId" exact>

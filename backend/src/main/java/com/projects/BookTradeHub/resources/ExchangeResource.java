@@ -41,7 +41,7 @@ public class ExchangeResource {
 	@GetMapping(value = "/disponible")
 	public ResponseEntity<Page<ExchangeDTO>> findAllDisponible(Pageable pageable) {
 		User me = authService.authenticated();
-		Page<ExchangeDTO> list = service.findAllDisponible(me, pageable);	
+		Page<ExchangeDTO> list = service.findAllDisponible(me, Status.DISPONIBLE, pageable);	
 		return ResponseEntity.ok().body(list);
 	}
 	
