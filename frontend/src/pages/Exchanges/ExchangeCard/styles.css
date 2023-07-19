@@ -50,19 +50,30 @@
     align-items: center;
     justify-content: center;
     width: 50%;
+    text-align: center;
 }
 
 .creator-info img{
     height: 60px;
     width: 60px;
     border-radius: 50%;
+}
+
+.image-wrapper {
+    width: 66px;
+    height: 66px; 
+    border-radius: 50%;
+    overflow: hidden; 
+    background: linear-gradient(270deg, #FF1493 10%, #00FFFF 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 5px;
 }
 
 .creator-book-info img{
     height: 60px;
     width: 60px;
-    margin-bottom: 5px;
 }
 
 .creator-info h5, .creator-book-info h5{

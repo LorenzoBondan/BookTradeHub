@@ -53,7 +53,9 @@ const ExchangeCard = ({ exchange, onChangeStatus, color }: Props) => {
                     <div className='creator-container'>
                         <div className='creator-info'>
                             <h4>Creator</h4>
-                            <img src={exchange.creator.imgUrl} alt="" />
+                            <div className="image-wrapper">
+                                <img src={exchange.creator.imgUrl} alt="" />
+                            </div>
                             <h5>{exchange.creator.name}</h5>
                             <p>{exchange.creator.email}</p>
                             <p>Total Exchanges Completed: <strong>{totalExchangesCompleted}</strong></p>
@@ -68,9 +70,32 @@ const ExchangeCard = ({ exchange, onChangeStatus, color }: Props) => {
                     </div>
                     <div className="arrow-rigth"><IoArrowRedo style={{color: color, fontSize:"3rem"}}/></div>
                 </div>
-                <div className='exchange-card-receiver-container'>
-
-                </div>
+                {exchange.receiver && 
+                    <div className='exchange-card-receiver-container'>
+                        <div className='receiver-container'>
+                            <div className='receiver-info'>
+                                <h4>Receiver</h4>
+                                <div className="image-wrapper">
+                                    <img src={exchange.creator.imgUrl} alt="" />
+                                    <div className="border-overlay"></div>
+                                </div>
+                                <h5>{exchange.receiver.name}</h5>
+                                <p>{exchange.receiver.email}</p>
+                                <p>Total Exchanges Completed: <strong>{totalExchangesCompleted}</strong></p>
+                            </div>
+                            {exchange.bookReceived && 
+                                <div className='receiver-book-info'>
+                                    <h4>Book Received</h4>
+                                    <img src={exchange.bookReceived.imgUrl} alt="" />
+                                    <h5>{exchange.bookReceived.title}</h5>
+                                    <p>{exchange.bookReceived.author}</p>
+                                    <p>{exchange.bookReceived.year}</p>
+                                </div>
+                            }
+                        </div>
+                        <div className="arrow-left"><IoArrowUndo style={{color: color, fontSize:"3rem"}}/></div>
+                    </div>
+                }
             </div>
         </div>
     );
