@@ -46,6 +46,12 @@ public class ExchangeService {
 		Page<Exchange> list = repository.findAll(pageable);
 		return list.map(x -> new ExchangeDTO(x));
 	}
+	
+	@Transactional(readOnly = true)
+	public Page<ExchangeDTO> findAllDisponible(User user, Pageable pageable) {
+		Page<Exchange> list = repository.findAllDisponible(user, pageable);
+		return list.map(x -> new ExchangeDTO(x));
+	}
 
 	@Transactional(readOnly = true)
 	public ExchangeDTO findById(Long id) {

@@ -38,6 +38,13 @@ public class ExchangeResource {
 		return ResponseEntity.ok().body(list);
 	}
 	
+	@GetMapping(value = "/disponible")
+	public ResponseEntity<Page<ExchangeDTO>> findAllDisponible(Pageable pageable) {
+		User me = authService.authenticated();
+		Page<ExchangeDTO> list = service.findAllDisponible(me, pageable);	
+		return ResponseEntity.ok().body(list);
+	}
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<ExchangeDTO> findById(@PathVariable Long id) {
 		ExchangeDTO dto = service.findById(id);	

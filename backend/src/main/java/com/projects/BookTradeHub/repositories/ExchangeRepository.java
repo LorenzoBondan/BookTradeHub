@@ -25,4 +25,10 @@ public interface ExchangeRepository extends JpaRepository<Exchange,Long>{
 	
 	@Query("SELECT t.status AS status, COUNT(t.id) AS sum FROM Exchange t WHERE ((t.creator = :user) OR (t.receiver = :user)) GROUP BY t.status")
 	List<ExchangesByStatusProjection> exchangesByStatus(User user);
+	
+	@Query("SELECT obj FROM Exchange obj WHERE "
+			+ "((obj.creator != :user) AND "
+			+ "(obj.status = 'DISPONIBLE')) "
+			+ "ORDER BY obj.creationTime DESC")
+	Page<Exchange> findAllDisponible(User user, Pageable pageable);
 }

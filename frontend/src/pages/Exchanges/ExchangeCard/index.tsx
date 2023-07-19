@@ -150,7 +150,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                         </div>
                     </div>
                 </div>
-                {exchange.receiver && 
+                {exchange.receiver ? ( 
                     <div className='exchange-card-receiver-container'>
                         <div className='receiver-container'>
                             {exchange.bookReceived ? ( 
@@ -180,7 +180,11 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                             </div>
                         </div>
                     </div>
-                }
+                ): (
+                    <div className='exchange-card-receiver-container'>
+                        <h5>Waiting for an offer...</h5>
+                    </div>
+                )}
             </div>
         </div>
         {status === "DISPONIBLE" && exchange.creator.id !== user.id && 
