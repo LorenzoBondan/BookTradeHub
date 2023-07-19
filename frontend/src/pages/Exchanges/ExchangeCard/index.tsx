@@ -105,6 +105,23 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
             })
     }
 
+    const cancelOffer = () => {
+        if(!window.confirm("Are you sure that you want to cancel the exchange?")){ 
+            return;
+        }
+
+        const params : AxiosRequestConfig = {
+            method:"PUT",
+            url: `/exchanges/${exchange.id}/cancelExchange`,
+            withCredentials:true
+          }
+          requestBackend(params) 
+            .then(response => {
+                onChangeStatus();
+                toast.success("Exchanged canceled!")
+            })
+    }
+
     return(
         <>
         <div className='exchange-card-container base-card'>
@@ -178,7 +195,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                 <div className='buttons base-card'>
                     <p className='exchange-card-button accept-button' onClick={acceptOffer}><MdDone/> Accept Exchange</p>
                     <p className='exchange-card-button reject-button' onClick={rejectOffer}><IoMdClose/> Reject Exchange</p>
-                    <p className='exchange-card-button cancel-button'><FcCancel/> Cancel Exchange</p>
+                    <p className='exchange-card-button cancel-button' onClick={cancelOffer}><FcCancel/> Cancel Exchange</p>
                 </div>
             </div>
         }
