@@ -66,8 +66,8 @@ const NotificationCard = ({notification, onRead} : Props) => {
                 <p><FiClock style={{marginRight:"3px"}}/>{convertDateTime(notification.moment)}</p>
             </div>
             <div className='notification-card-button'>
-                {notification.read && <AiOutlineCheck style={{marginRight:"2px"}} />}
-                <BsEye onClick={handleReadChange} className='notification-card-eye' />
+                {notification.read && <AiOutlineCheck style={{marginRight:"2px", color:"#FF1493"}} />}
+                <BsEye style={{color:"#FF1493"}} onClick={handleReadChange} className='notification-card-eye' />
             </div>
         </div>
     );
