@@ -1,3 +1,10 @@
+.exchanges-waiting-header{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
 .exchanges-avaliable-message{
     width: 100%;
     display: flex;
@@ -9,4 +16,5 @@
 .exchanges-waiting{
     color: #00FFFF;
     text-shadow: 1px 1px 1px black;
+    margin-right: 10px;
 }

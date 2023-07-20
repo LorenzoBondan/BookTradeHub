@@ -1,27 +1,39 @@
 .user-filter-container{
     margin: 20px 0 !important;
     padding: 15px;
+    width: auto;
+    display: flex;
+}
+
+.user-filter-form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .user-filter-name-container{
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #E1E1E1;
     margin-bottom: 10px;
 }
 
 .user-filter-name-container input {
     border: none;
-    background-color: white;
+    background-color: transparent;
+    border-bottom: 1px solid #9e9e9e;
+    border-radius: 0 !important;
 }
 
 .user-filter-name-container input:active{
-    background-color: white;
-    color: black !important;
+    background-color: transparent !important;
+    color: white !important;
 }
 
 .user-filter-name-container input:focus {
     box-shadow: none;
+    background-color: transparent;
+    color: white !important;
 }
 
 .user-filter-name-container input::placeholder{
@@ -56,23 +68,13 @@
 @media(min-width:768px){
 
     .user-filter-container{
-        flex: 1;
         margin-bottom: 0;
         padding: 10px 15px;
     }
 
-    .user-filter-form{
-        display: flex;
-    }
-
     .user-filter-name-container{
-        flex:1;
         margin-right: 20px;
         margin-bottom: 0;
-    }
-
-    .user-filter-bottom-container{
-        flex:1;
     }
 
     .btn-user-filter-word{

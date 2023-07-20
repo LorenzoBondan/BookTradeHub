@@ -5,8 +5,15 @@ import { getTokenData } from 'util/auth';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import ExchangeCard from 'pages/Exchanges/ExchangeCard';
+import ExchangeFilter, { ExchangeFilterData } from 'Components/ExchangeFilter';
+
+type ControlComponentsData = {
+  filterData: ExchangeFilterData;
+}
 
 const DisponibleExchanges = () => {
+
+  const [controlComponentsData, setControlComponentsData] = useState<ControlComponentsData>({filterData: { title: '' }});
 
     const [user, setUser] = useState<User | null>(null);
 
@@ -39,7 +46,10 @@ const DisponibleExchanges = () => {
         const params: AxiosRequestConfig = {
             method: "GET",
             url: `/exchanges/disponible`,
-            withCredentials: true
+            withCredentials: true,
+            params: {
+              title: controlComponentsData.filterData.title
+            },
           }
     
           requestBackend(params)
@@ -49,21 +59,25 @@ const DisponibleExchanges = () => {
             .catch(error => {
               console.log("erro: " + error);
             });
-    }, []);
+    }, [controlComponentsData.filterData.title]);
 
     useEffect(() => {
         getDisponibleExchanges();
     }, [getDisponibleExchanges]);
 
+    const handleSubmitFilter = (data : ExchangeFilterData) => {
+      setControlComponentsData({filterData: data});
+    }
+
     return (
       <div className='exchanges-container'>
           <div className='user-exchanges-container'>
               <div className='exchanges-status'>
-              {user && exchangesDisponible && exchangesDisponible.content.length > 0 && 
                 <div className='exchanges-waiting-header'>
-                  <h2 className='exchanges-waiting'>Exchanges waiting for an offer</h2>
+                  <h4 className='exchanges-waiting'>Exchanges waiting for an offer</h4>
+                  <ExchangeFilter onSubmitFilter={handleSubmitFilter}/>
                 </div>
-                }
+                <div className='separator'></div>
                   <div className='exchanges-status-top'></div>
                   <div className='exchanges-zone'>
                     {user && exchangesDisponible && exchangesDisponible.content.length > 0 ? (

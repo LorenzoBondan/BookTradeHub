@@ -10,7 +10,7 @@ type Props = {
     onSubmitFilter : (data: ExchangeFilterData) => void;
 }
 
-const UserFilter = ( {onSubmitFilter} : Props ) => {
+const ExchangeFilter = ( {onSubmitFilter} : Props ) => {
 
     const { register, handleSubmit, setValue } = useForm<ExchangeFilterData>();
 
@@ -47,4 +47,4 @@ const UserFilter = ( {onSubmitFilter} : Props ) => {
     );
 }
 
-export default UserFilter;
+export default ExchangeFilter;
