@@ -8,6 +8,8 @@ import { getAuthData, saveAuthData } from 'util/storage';
 import './styles.css';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AiOutlineUser } from 'react-icons/ai';
+import { RiLockPasswordFill } from 'react-icons/ri';
 
 type FormData = {
     username: string,
@@ -65,8 +67,9 @@ const Login = () => {
                        Error when trying to login
                     </div>
                 )}
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <div className="mb-4">
+                <form onSubmit={handleSubmit(onSubmit)} className='login-form'>
+                    <div className="login-username-input mb-2">
+                        <AiOutlineUser className='user-icon'/>
                         <input 
                             {...register("username", {
                             required: 'Campo obrigatório',
@@ -76,19 +79,20 @@ const Login = () => {
                             }
                             })}
                             type="text"
-                            className={`form-control base-input ${errors.username ? 'is-invalid' : ''}`}
+                            className={`username-input base-input ${errors.username ? 'is-invalid' : ''}`}
                             placeholder="Email"
                             name="username"
                         />
                         <div className='invalid-feedback d-block'>{errors.username?.message}</div>
                     </div>
-                    <div className="mb-2">
+                    <div className="login-username-input mb-2">
+                        <RiLockPasswordFill className='user-icon'/>
                         <input
                             {...register("password", {
                             required: 'Campo obrigatório'
                             })}
                             type="password"
-                            className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
+                            className={`username-input base-input ${errors.password ? 'is-invalid' : ''}`}
                             placeholder="Password"
                             name="password"
                         />
