@@ -115,6 +115,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin-bottom: 10px;
 }
 
 .profile-card-user-name h1{
@@ -125,6 +126,51 @@
 .profile-card-user-name p{
     color: #aeaeae;
     font-family: 'Poppins';
+}
+
+/* books */
+
+.profile-card-books-container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.profile-card-my-books-container, .profile-card-wish-list-container{
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    width: 500px;
+    height: 400px;
+    border-radius: 5px !important;
+}
+
+.profile-card-my-books-container{
+    left: -150px;
+}
+
+.profile-card-wish-list-container{
+    right: -150px;
+}
+
+.books-title{
+    width: 100%;
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid #aeaeae;
+}
+
+.books-container{
+    height: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 @media(min-width:1200px){

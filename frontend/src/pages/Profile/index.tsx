@@ -74,6 +74,20 @@ const Profile = () => {
                     <h1>{user?.name}</h1>
                     <p>{user?.email}</p>
                 </div>
+                <div className='profile-card-books-container'>
+                    <div className='profile-card-my-books-container base-card'>
+                        <h5 className='books-title'>My Books</h5>
+                        <div className='books-container'>
+
+                        </div>
+                    </div>
+                    <div className='profile-card-wish-list-container base-card'>
+                        <h5 className='books-title'>Wish List</h5>
+                        <div className='books-container'>
+
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     );
