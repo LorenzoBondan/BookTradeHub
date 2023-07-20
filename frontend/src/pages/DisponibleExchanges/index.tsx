@@ -55,25 +55,34 @@ const DisponibleExchanges = () => {
         getDisponibleExchanges();
     }, [getDisponibleExchanges]);
 
-    return(
-        <div className='exchanges-container'>
-            <div className='user-exchanges-container'>
-                <div className='exchanges-status'>
-                    <div className='exchanges-status-top'>
-                    {user && exchangesDisponible ? (exchangesDisponible.content.map(exchange => (
-                        <div className='' key={exchange.id}>
+    return (
+      <div className='exchanges-container'>
+          <div className='user-exchanges-container'>
+              <div className='exchanges-status'>
+              {user && exchangesDisponible && exchangesDisponible.content.length > 0 && 
+                <div className='exchanges-waiting-header'>
+                  <h2 className='exchanges-waiting'>Exchanges waiting for an offer</h2>
+                </div>
+                }
+                  <div className='exchanges-status-top'></div>
+                  <div className='exchanges-zone'>
+                    {user && exchangesDisponible && exchangesDisponible.content.length > 0 ? (
+                        exchangesDisponible.content.map(exchange => (
+                          <div className='exchange-column' key={exchange.id}>
                             <ExchangeCard exchange={exchange} user={user} onChangeStatus={getDisponibleExchanges} color='#00FFFF' />
-                        </div>
-                    ))) : (
-                        <div>
-                            <h2>There is no exchanges disponible</h2>
+                          </div>
+                        ))
+                    ) : (
+                        <div className='exchanges-avaliable-message'>
+                            <h2>There are no exchanges available</h2>
                         </div>
                     )}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
+                  </div>
+              </div>
+          </div>
+      </div>
+  );
+  
 }
 
 export default DisponibleExchanges;

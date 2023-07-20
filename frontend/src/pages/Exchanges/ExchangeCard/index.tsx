@@ -238,14 +238,14 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
         ) : (
             <div className='exchange-card-buttons-container'>
                 <div className='buttons base-card'>
-                    <p>Waiting for the other user awnser</p>
+                    <p>Waiting for the other user's answer</p>
                 </div>
             </div>
         ))}
         {status === "COMPLETED" && 
             <div className='exchange-card-buttons-container'>
-                <div className='buttons'>
-                    <p>COMPLETED</p>
+                <div className='buttons base-card'>
+                    <p className='completed'>COMPLETED</p>
                 </div>
             </div>
         }

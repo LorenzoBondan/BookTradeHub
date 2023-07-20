@@ -182,6 +182,11 @@
     background-color: #CD00001e;
 }
 
+.completed{
+    color: #00FF00;
+    background-color: #00ff001e;
+}
+
 /* modal */
 
 .my-books-form{

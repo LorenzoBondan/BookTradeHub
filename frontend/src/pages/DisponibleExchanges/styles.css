@@ -1,0 +1,12 @@
+.exchanges-avaliable-message{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.exchanges-waiting{
+    color: #00FFFF;
+    text-shadow: 1px 1px 1px black;
+}
