@@ -30,38 +30,6 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
         setStatus(exchange.status);
     }, [exchange]);
 
-    const [totalExchangesCompleted, setTotalExchangesCompleted] = useState<number>(0);
-  
-    useEffect(() => {
-      const calculateTotalExchangesCompleted = (exchangesId: number[]) => {
-        let sum = 0;
-  
-        exchangesId.forEach((exchangeId) => {
-          const params: AxiosRequestConfig = {
-            method: 'GET',
-            url: `/exchanges/${exchangeId}`,
-            withCredentials: true,
-          };
-  
-          requestBackend(params)
-            .then((response) => {
-              if (response.data.status === 'COMPLETED') {
-                sum = sum + 1;
-                setTotalExchangesCompleted(sum);
-              }
-            })
-            .catch((error) => {
-              console.log('Error: ', error);
-            });
-        });
-      };
-
-      calculateTotalExchangesCompleted([
-        ...exchange.creator.exchangesCreatedId,
-        ...exchange.creator.exchangesReceivedId,
-      ]);
-    }, [exchange.creator.exchangesCreatedId, exchange.creator.exchangesReceivedId]);
-
     // DISPONIBLE 
 
     const [bookId, setBookId] = useState<number | undefined>();
@@ -174,7 +142,6 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                             </div>
                             <h5>{exchange.creator.name}</h5>
                             <p>{exchange.creator.email}</p>
-                            <p>Total Exchanges Completed: <strong>{totalExchangesCompleted}</strong></p>
                         </div>
                         <IoArrowRedo style={{color: color, fontSize:"2rem", margin:"10px"}}/>
                         <div className='creator-book-info'>
@@ -212,7 +179,6 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                                 </div>
                                 <h5>{exchange.receiver.name}</h5>
                                 <p>{exchange.receiver.email}</p>
-                                <p>Total Exchanges Completed: <strong>{totalExchangesCompleted}</strong></p>
                             </div>
                         </div>
                 ) : (
