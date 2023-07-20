@@ -30,7 +30,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
         setStatus(exchange.status);
     }, [exchange]);
 
-    const [totalExchangesCompleted, setTotalExchangesCompleted] = useState<number>(0); // Inicialize o estado com 0
+    const [totalExchangesCompleted, setTotalExchangesCompleted] = useState<number>(0);
   
     useEffect(() => {
       const calculateTotalExchangesCompleted = (exchangesId: number[]) => {
@@ -187,9 +187,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                             <p>{exchange.bookOffered.year}</p>
                         </div>
                     </div>
-                
                     {exchange.receiver ? ( 
-
                         <div className='receiver-container'>
                             {exchange.bookReceived ? ( 
                                 <div className='receiver-book-info'>
@@ -217,8 +215,6 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                                 <p>Total Exchanges Completed: <strong>{totalExchangesCompleted}</strong></p>
                             </div>
                         </div>
-
-                    
                 ) : (
                     <div className='receiver-container'>
                         <h5>Waiting for an offer...</h5>
@@ -282,13 +278,6 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
             <div className='exchange-card-buttons-container'>
                 <div className='buttons'>
                     <p>COMPLETED</p>
-                </div>
-            </div>
-        }
-        {status === "REJECTED" && 
-            <div className='exchange-card-buttons-container'>
-                <div className='buttons'>
-                    <p>REJECTED</p>
                 </div>
             </div>
         }
