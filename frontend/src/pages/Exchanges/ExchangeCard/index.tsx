@@ -9,9 +9,11 @@ import { MdDone } from 'react-icons/md';
 import { IoMdClose } from 'react-icons/io';
 import { FcCancel } from 'react-icons/fc';
 import { MdOutlineChangeCircle } from 'react-icons/md';
+import { AiOutlineCalendar } from 'react-icons/ai';
 import { toast } from 'react-toastify';
 import Modal from 'react-modal';
 import Select from "react-select";
+import { convertDateTime } from 'helpers';
 
 type Props = {
     exchange: Exchange;
@@ -163,7 +165,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
         <div className='exchange-card-container base-card'>
             <div className='border-colored' style={{height:"100%", width:"3px", backgroundColor: color}}></div>
             <div className='exchange-card-content-container'>
-                <div className='exchange-card-creator-container'>
+                <div className='exchange-card-creator-and-receiver-container'>
                     <div className='creator-container'>
                         <div className='creator-info'>
                             <h4>Creator</h4>
@@ -185,9 +187,9 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                             <p>{exchange.bookOffered.year}</p>
                         </div>
                     </div>
-                </div>
-                {exchange.receiver ? ( 
-                    <div className='exchange-card-receiver-container'>
+                
+                    {exchange.receiver ? ( 
+
                         <div className='receiver-container'>
                             {exchange.bookReceived ? ( 
                                 <div className='receiver-book-info'>
@@ -215,12 +217,17 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                                 <p>Total Exchanges Completed: <strong>{totalExchangesCompleted}</strong></p>
                             </div>
                         </div>
-                    </div>
-                ): (
-                    <div className='exchange-card-receiver-container'>
+
+                    
+                ) : (
+                    <div className='receiver-container'>
                         <h5>Waiting for an offer...</h5>
                     </div>
                 )}
+                </div>
+                <div className='exchange-card-date-container'>
+                    <span><AiOutlineCalendar style={{marginRight:"2px"}}/> Created at {convertDateTime(exchange.creationTime)}</span>
+                </div>
             </div>
         </div>
         {status === "DISPONIBLE" && exchange.creator.id !== user.id && 
@@ -271,10 +278,10 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                 </div>
             </div>
         ))}
-        {status === "ACCEPTED" && 
+        {status === "COMPLETED" && 
             <div className='exchange-card-buttons-container'>
                 <div className='buttons'>
-                    <p>ACCEPTED</p>
+                    <p>COMPLETED</p>
                 </div>
             </div>
         }
