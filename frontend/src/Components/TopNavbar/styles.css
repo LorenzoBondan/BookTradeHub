@@ -116,7 +116,10 @@
 }
 
 .top-navbar-login-container{
-    width: 5%;
+    width: 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .top-navbar-login-container p{

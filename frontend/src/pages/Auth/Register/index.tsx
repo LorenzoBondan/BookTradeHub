@@ -1,6 +1,6 @@
 import { AxiosRequestConfig } from 'axios';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { requestBackend } from 'util/requests';
 import './styles.css';
 import { User } from 'types';
@@ -93,6 +93,12 @@ const RegisterForm = () => {
                                 <div className='invalid-feedback d-block'>{errors.password?.message}</div>
                             </div>
                             {alertMessage && <p className="error-message margin-bottom-30">{alertMessage}</p>}
+                        </div>
+                        <div className="signup-container">
+                            <span className="not-registered">Do you have already an account?</span>
+                            <Link to="/auth/login" className="login-link-register">
+                                SIGN IN
+                            </Link>
                         </div>
                         <div className='user-buttons-container'>
                             <button 

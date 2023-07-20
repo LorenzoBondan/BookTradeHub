@@ -206,7 +206,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                         className="modal-content"
                     >
                         <form onSubmit={offerExchange} className="my-books-form">
-                            <h4>Offer Exchange</h4>
+                            <h4><MdOutlineChangeCircle/> Offer Exchange</h4>
                             <div className="my-books-input-container">
                                 <label htmlFor="">Your Books</label>
                                 <Select 

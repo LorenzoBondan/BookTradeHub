@@ -6,6 +6,7 @@ import { TbArrowsExchange } from 'react-icons/tb';
 import { HiLogout } from 'react-icons/hi';
 import { HiLogin } from 'react-icons/hi';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { AiOutlineEdit } from 'react-icons/ai';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { User } from 'types';
 import { getTokenData, hasAnyRoles, isAuthenticated } from 'util/auth';
@@ -126,7 +127,10 @@ const TopNavbar = () => {
               </> : (
                 <div className='top-navbar-login-container'>
                     <NavLink to="/auth/login" className="login-nav-item">
-                      <p><HiLogin/> Login</p>
+                      <p><HiLogin/> Sign In</p>
+                    </NavLink>
+                    <NavLink to="/auth/signup" className="login-nav-item">
+                      <p><AiOutlineEdit/> Sign Up</p>
                     </NavLink>
                 </div>
               )}

@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import {ReactComponent as SearchIcon} from 'assets/images/search-icon.svg';
-import './styles.css';
 
 export type ExchangeFilterData = {
     title : string;
