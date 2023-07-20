@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -39,9 +40,9 @@ public class ExchangeResource {
 	}
 	
 	@GetMapping(value = "/disponible")
-	public ResponseEntity<Page<ExchangeDTO>> findAllDisponible(Pageable pageable) {
+	public ResponseEntity<Page<ExchangeDTO>> findAllDisponible(@RequestParam(value = "title", defaultValue = "") String title, Pageable pageable) {
 		User me = authService.authenticated();
-		Page<ExchangeDTO> list = service.findAllDisponible(me, Status.DISPONIBLE, pageable);	
+		Page<ExchangeDTO> list = service.findAllDisponible(me, Status.DISPONIBLE, title, pageable);	
 		return ResponseEntity.ok().body(list);
 	}
 	

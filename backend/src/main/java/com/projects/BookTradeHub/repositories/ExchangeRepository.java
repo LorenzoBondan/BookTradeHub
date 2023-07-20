@@ -28,7 +28,8 @@ public interface ExchangeRepository extends JpaRepository<Exchange,Long>{
 	
 	@Query("SELECT obj FROM Exchange obj WHERE "
 			+ "((obj.creator != :user) AND "
-			+ "(obj.status = :status)) "
+			+ "(obj.status = :status) AND "
+			+ "(UPPER(obj.bookOffered.title) LIKE UPPER(CONCAT('%', :title, '%')))) "
 			+ "ORDER BY obj.creationTime DESC")
-	Page<Exchange> findAllDisponible(User user, Status status, Pageable pageable);
+	Page<Exchange> findAllDisponible(User user, Status status, String title, Pageable pageable);
 }
