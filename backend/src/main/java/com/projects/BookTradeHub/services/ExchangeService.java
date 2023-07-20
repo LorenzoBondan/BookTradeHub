@@ -152,8 +152,18 @@ public class ExchangeService {
 	public ExchangeDTO acceptOffer(Long id) {
 		try {
 			Exchange entity = repository.getOne(id);
-			if(entity.getBookReceived() != null && entity.getStatus() != Status.CANCELED) {
+			if(entity.getBookReceived() != null && 
+			entity.getStatus() != Status.CANCELED && 
+			entity.getCreator().getMyBooks().contains(entity.getBookOffered()) && 
+			entity.getReceiver().getMyBooks().contains(entity.getBookReceived())) {
 				updateStatus(id, Status.COMPLETED, "The exchange #" + entity.getId() + " was completed!");
+				
+				// adding books to creator and to receiver
+				entity.getCreator().getMyBooks().add(entity.getBookReceived());
+				entity.getCreator().getMyBooks().remove(entity.getBookOffered());
+				entity.getReceiver().getMyBooks().add(entity.getBookOffered());
+				entity.getReceiver().getMyBooks().remove(entity.getBookReceived());
+				
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);
 			}
