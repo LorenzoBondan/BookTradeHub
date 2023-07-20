@@ -5,6 +5,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 import { TbArrowsExchange } from 'react-icons/tb';
 import { HiLogout } from 'react-icons/hi';
 import { HiLogin } from 'react-icons/hi';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { useCallback, useContext, useEffect, useState } from 'react';
 import { User } from 'types';
 import { getTokenData, hasAnyRoles, isAuthenticated } from 'util/auth';
@@ -110,6 +111,9 @@ const TopNavbar = () => {
                     </p>
                     <NavLink to="/create">
                         <p><AiOutlinePlus className='top-navbar-icon'/></p>
+                    </NavLink>
+                    <NavLink to="/disponibleExchanges">
+                        <p><AiOutlineSearch className='top-navbar-icon'/></p>
                     </NavLink>
                     <NavLink to="/exchanges">
                         <p><TbArrowsExchange className='top-navbar-icon'/></p>
