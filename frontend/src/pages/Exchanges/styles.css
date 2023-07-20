@@ -59,6 +59,12 @@
     height: 100%;
 }
 
+.exchange-column, .exchanges-zone{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .exchanges-status{
     display: flex;
     flex-direction: column;
@@ -94,7 +100,7 @@
 .exchanges-zone{
     display: flex;
     flex-direction: column;
-    height: 250%;
+    height: 100%;
     overflow-y: scroll;
 }
 
