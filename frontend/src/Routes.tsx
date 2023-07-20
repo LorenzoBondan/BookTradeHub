@@ -9,6 +9,7 @@ import background from 'assets/images/background.png';
 import Home from "pages/Home";
 import Exchanges from "pages/Exchanges";
 import DisponibleExchanges from "pages/DisponibleExchanges";
+import Profile from "pages/Profile";
 
 const Routes = () => {
 
@@ -60,7 +61,7 @@ const Routes = () => {
                             </Route>
 
                             <Route path="/profile" exact>
-
+                                <Profile/>
                             </Route>
                         </Switch>
                     )}

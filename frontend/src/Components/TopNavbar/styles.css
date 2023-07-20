@@ -125,3 +125,7 @@
 .top-navbar-login-container p{
     margin-bottom: 0;
 }
+
+.navbar-toggler-icon {
+    color: #fff !important;
+}
