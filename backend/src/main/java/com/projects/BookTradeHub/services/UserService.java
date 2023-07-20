@@ -164,4 +164,42 @@ public class UserService implements UserDetailsService {
 		return user;
 	}
 	
+	@Transactional
+	public UserDTO removeBookFromMyList(Long id, Long bookId) {
+		try {
+			User entity = repository.getOne(id);
+			Book book = bookRepository.getOne(bookId);
+			
+			if(entity.getMyBooks().contains(book)) {
+				entity.getMyBooks().remove(book);
+				entity = repository.save(entity);
+				return new UserDTO(entity);
+			}
+			else {
+				throw new ResourceNotFoundException("Book not found");
+			}
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found " + id);
+		}
+	}
+	
+	@Transactional
+	public UserDTO removeBookFromWishList(Long id, Long bookId) {
+		try {
+			User entity = repository.getOne(id);
+			Book book = bookRepository.getOne(bookId);
+			
+			if(entity.getWishList().contains(book)) {
+				entity.getWishList().remove(book);
+				entity = repository.save(entity);
+				return new UserDTO(entity);
+			}
+			else {
+				throw new ResourceNotFoundException("Book not found");
+			}
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found " + id);
+		}
+	}
+	
 }

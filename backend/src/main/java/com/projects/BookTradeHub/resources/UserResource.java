@@ -63,12 +63,21 @@ public class UserResource {
 		return ResponseEntity.ok().body(newDto);
 	}
 	
-	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<UserDTO> delete(@PathVariable Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PutMapping(value = "/{id}/removeFromMyList/{bookId}")
+	public ResponseEntity<UserDTO> removeFromMyList(@PathVariable Long id, @PathVariable Long bookId)	{
+		UserDTO newDto = service.removeBookFromMyList(id, bookId);
+		return ResponseEntity.ok().body(newDto);
+	}
 	
+	@PutMapping(value = "/{id}/removeFromWishList/{bookId}")
+	public ResponseEntity<UserDTO> removeFromWishList(@PathVariable Long id, @PathVariable Long bookId)	{
+		UserDTO newDto = service.removeBookFromWishList(id, bookId);
+		return ResponseEntity.ok().body(newDto);
+	}
 }
