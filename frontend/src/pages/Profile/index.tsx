@@ -8,6 +8,7 @@ import { FaUserEdit } from 'react-icons/fa';
 import { FaBookMedical } from 'react-icons/fa';
 import { FaBookmark } from 'react-icons/fa';
 import BookCard from './BookCard';
+import { AiOutlineUnorderedList } from 'react-icons/ai';
 
 const Profile = () => {
 
@@ -77,7 +78,7 @@ const Profile = () => {
                 </div>
                 <div className='profile-card-books-container'>
                     <div className='profile-card-my-books-container base-card'>
-                        <h5 className='books-title'>My Books</h5>
+                        <h5 className='books-title'><AiOutlineUnorderedList style={{marginRight:"3px"}}/> My Books <h6>({user?.myBooks.length})</h6></h5>
                         <div className='books-container'>
                             {user?.myBooks.map(book => (
                                 <BookCard book={book} user={user} onDelete={getUser} key={book.id}/>
@@ -85,7 +86,7 @@ const Profile = () => {
                         </div>
                     </div>
                     <div className='profile-card-wish-list-container base-card'>
-                        <h5 className='books-title'>Wish List</h5>
+                        <h5 className='books-title'><AiOutlineUnorderedList style={{marginRight:"3px"}}/> Wish List <h6>({user?.wishList.length})</h6></h5>
                         <div className='books-container'>
                             {user?.wishList.map(book => (
                                 <BookCard book={book} user={user} onDelete={getUser} key={book.id}/>

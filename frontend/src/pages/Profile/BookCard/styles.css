@@ -2,7 +2,7 @@
     display: flex;
     width: 100%;
     height: auto;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     background: radial-gradient(farthest-corner, rgba(6,0,9,0.2) 40%, #060009 100%);
 }
 
@@ -39,6 +39,8 @@
 
 .book-info p{
     font-size: 0.8rem;
+    color: #aeaeae;
+    font-style: italic;
 }
 
 .book-card-buttons{
@@ -49,7 +51,7 @@
 
 .book-delete{
     font-size: 1.2rem;
-    color: #FF1493;
+    color: #FFA500;
     cursor: pointer;
 }
 
