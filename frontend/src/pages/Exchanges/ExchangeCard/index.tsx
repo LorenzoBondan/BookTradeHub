@@ -48,7 +48,8 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
         setIsOpen(false);
     }
 
-    const offerExchange = () => {
+    const offerExchange = (event: React.FormEvent) => {
+        event?.preventDefault();
 
         const params : AxiosRequestConfig = {
             method:"PUT",
@@ -58,8 +59,9 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
           requestBackend(params) 
             .then(response => {
                 console.log(response.data);
-                
-                toast.success("Offer maded!")
+                toast.success("Offer maded!");
+                closeModal();
+                onChangeStatus();
             })
     }
 

@@ -49,7 +49,7 @@ const Exchanges = () => {
         { value: 'PENDING', label: 'Pending' , color:'#FFFF00'},
         { value: 'COMPLETED', label: 'Completed' , color:'#00FF00'},
         { value: 'CANCELED', label: 'Canceled' , color: '#FF1493'},
-      ];
+    ];
 
     const getExchangesByStatus = useCallback(async () => {
         const params: AxiosRequestConfig = {
