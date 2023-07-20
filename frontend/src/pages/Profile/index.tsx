@@ -80,7 +80,7 @@ const Profile = () => {
                         <h5 className='books-title'>My Books</h5>
                         <div className='books-container'>
                             {user?.myBooks.map(book => (
-                                <BookCard book={book} onDelete={getUser} key={book.id}/>
+                                <BookCard book={book} user={user} onDelete={getUser} key={book.id}/>
                             ))}
                         </div>
                     </div>
@@ -88,7 +88,7 @@ const Profile = () => {
                         <h5 className='books-title'>Wish List</h5>
                         <div className='books-container'>
                             {user?.wishList.map(book => (
-                                <BookCard book={book} onDelete={getUser} key={book.id}/>
+                                <BookCard book={book} user={user} onDelete={getUser} key={book.id}/>
                             ))}
                         </div>
                     </div>

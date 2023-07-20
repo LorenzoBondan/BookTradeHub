@@ -1,13 +1,33 @@
-import { Book } from 'types';
+import { Book, User } from 'types';
 import './styles.css';
 import { AiFillDelete } from 'react-icons/ai';
+import { AxiosRequestConfig } from 'axios';
+import { requestBackend } from 'util/requests';
 
 type Props = {
     book: Book;
     onDelete: Function;
+    user: User;
 }
 
-const BookCard = ({book, onDelete} : Props) => {
+const BookCard = ({book, user, onDelete} : Props) => {
+
+    const removeBook = (list : string) => {
+    
+        if(!window.confirm("Are you sure that you want to remove this book from your list?")){ 
+          return;
+        }
+    
+        const params : AxiosRequestConfig = {
+          method:"PUT",
+          url: `/users/${user.id}/removeFrom${list}/${book.id}`,
+          withCredentials: true
+        }
+    
+        requestBackend(params).then(() => {
+          onDelete();
+        })
+    }
 
     return(
         <div className='book-card-container'>
@@ -20,7 +40,12 @@ const BookCard = ({book, onDelete} : Props) => {
                 </div>
             </div>
             <div className='book-card-buttons'>
-                <AiFillDelete className='book-delete'/>
+                {user.myBooks.includes(book) && 
+                    <AiFillDelete className='book-delete' onClick={() => removeBook('MyList')}/>
+                }
+                {user.wishList.includes(book) && 
+                    <AiFillDelete className='book-delete' onClick={() => removeBook('WishList')}/>
+                }
             </div>
         </div>
     );

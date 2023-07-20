@@ -42,8 +42,9 @@
 }
 
 .book-card-buttons{
+    display: flex;
     padding: 5px 10px;
-    width: 5%;
+    width: 8%;
 }
 
 .book-delete{
