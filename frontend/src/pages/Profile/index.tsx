@@ -7,6 +7,7 @@ import { requestBackend } from 'util/requests';
 import { FaUserEdit } from 'react-icons/fa';
 import { FaBookMedical } from 'react-icons/fa';
 import { FaBookmark } from 'react-icons/fa';
+import BookCard from './BookCard';
 
 const Profile = () => {
 
@@ -78,13 +79,17 @@ const Profile = () => {
                     <div className='profile-card-my-books-container base-card'>
                         <h5 className='books-title'>My Books</h5>
                         <div className='books-container'>
-
+                            {user?.myBooks.map(book => (
+                                <BookCard book={book} onDelete={getUser} key={book.id}/>
+                            ))}
                         </div>
                     </div>
                     <div className='profile-card-wish-list-container base-card'>
                         <h5 className='books-title'>Wish List</h5>
                         <div className='books-container'>
-
+                            {user?.wishList.map(book => (
+                                <BookCard book={book} onDelete={getUser} key={book.id}/>
+                            ))}
                         </div>
                     </div>
                 </div>

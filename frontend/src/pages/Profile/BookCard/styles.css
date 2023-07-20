@@ -1,0 +1,57 @@
+.book-card-container{
+    display: flex;
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+    background: radial-gradient(farthest-corner, rgba(6,0,9,0.2) 40%, #060009 100%);
+}
+
+.book-card-border{
+    height: 100%;
+    width: 3px;
+    background-image: linear-gradient(360deg, #ff14918f 10%, #FF1493 100%);
+}
+
+.book-card-content{
+    display: flex;
+    align-items: center;
+    width: 90%;
+    justify-content: space-evenly;
+    padding: 10px;
+}
+
+.book-card-content img{
+    height: 80px;
+    width: auto;
+}
+
+.book-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+}
+
+.book-info h2{
+    font-size: 1rem;
+}
+
+.book-info p{
+    font-size: 0.8rem;
+}
+
+.book-card-buttons{
+    padding: 5px 10px;
+    width: 5%;
+}
+
+.book-delete{
+    font-size: 1.2rem;
+    color: #FF1493;
+    cursor: pointer;
+}
+
+.book-delete:hover{
+    transform: scale(1.20);
+}
