@@ -107,14 +107,14 @@ const TopNavbar = () => {
 
     return(
         <div className='top-navbar-main-container'>
-          <div className='tasks-container-navbar'>
+          <div className='exchanges-container-navbar'>
               <div className='top-navbar-brand'>
                 <img src={logo} alt="" />
                 <h4>BookTradeHub</h4>
               </div>
               {authContextData.authenticated ?
               <>
-              <div className='tasks-container-second'>
+              <div className='exchanges-container-second'>
                   <ReactTooltip id="top-navbar-tooltip" place="bottom" />
                   <NavLink to="/profile" className='top-navbar-profile-container'>
                       <img src={user?.imgUrl} alt=""/>

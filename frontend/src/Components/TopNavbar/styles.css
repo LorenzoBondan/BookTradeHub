@@ -7,19 +7,22 @@
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
 }
 
-.tasks-container-navbar{
+.exchanges-container-navbar{
     padding: 20px;
     display: flex;
-    flex-direction: row;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
     justify-content: space-between;
-    height: 60px;
+    min-height: 60px;
     width: 100%;
 }
 
 .top-navbar-brand{
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 .top-navbar-brand h4{
@@ -32,27 +35,27 @@
 .top-navbar-profile-container{
     display: flex;
     align-items: center;
-    width: 100%;
-    justify-content: flex-end;
+    width: 20%;
+    justify-content: center;
     margin-right: 10px;
 }
 
-.tasks-container-second{
+.exchanges-container-second{
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 30%;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
 }
 
-.tasks-container-navbar img{
-    height: 40px;
+.exchanges-container-navbar img{
+    height: 20px;
     border-radius: 50%;
     margin-right: 5px;
     border: 2px solid #eaeaea;
 }
 
-.tasks-container-navbar h1{
-    font-size: 20px;
+.exchanges-container-navbar h1{
+    font-size: 16px;
     font-weight: 400;
     margin-bottom: 0;
     border-right: 1px dashed #eaeaea;
@@ -60,11 +63,11 @@
     padding-right: 12px;
 }
 
-.tasks-container-navbar h1:hover{
+.exchanges-container-navbar h1:hover{
     color: #00FFFF;
 }
 
-.tasks-container-second p {
+.exchanges-container-second p {
     margin-bottom: 0;
     font-size: 20px;
     margin-right: 10px;
@@ -73,18 +76,20 @@
     align-items: center;
 }
 
-.tasks-container-second p:hover {
+.exchanges-container-second p:hover {
     cursor: pointer;
 }
 
 .top-navbar-buttons-container{
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 50%;
 }
 
 .top-navbar-icon{
-    font-size: 24px;
-    margin-right: 5px;
+    font-size: 20px;
+    margin-right: 0px;
 }
 
 .top-navbar-icon:hover{
@@ -113,13 +118,14 @@
     border-radius: 50%;
     font-size: 11px;
     font-weight: bold;
+    display: none;
 }
 
 .top-navbar-login-container{
-    width: 9%;
+    width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
 }
 
 .top-navbar-login-container p{
@@ -128,4 +134,103 @@
 
 .navbar-toggler-icon {
     color: #fff !important;
+}
+
+@media(min-width:576px){
+
+    .exchanges-container-navbar img{
+        height: 26px;
+    }
+
+    .top-navbar-icon{
+        font-size: 24px;
+        margin-right: 5px;
+    }
+}
+
+@media(min-width:768px){
+
+    .exchanges-container-second{
+        align-items: center;
+    }
+
+    .top-navbar-profile-container{
+        width: 40%;
+        justify-content: flex-end;
+    }
+
+    .top-navbar-buttons-container{
+        width: 60%;
+        justify-content: flex-start;
+    }
+
+    .exchanges-container-navbar img{
+        height: 40px;
+    }
+
+    .exchanges-container-navbar h1{
+        font-size: 20px;
+        padding-right: 12px;
+    }
+}
+
+@media(min-width:992px){
+
+    .top-navbar-profile-container{
+        width: 45%;
+    }
+
+    .top-navbar-buttons-container{
+        width: 65%;
+    }
+}
+
+@media(min-width:1200px){
+
+    .exchanges-container-navbar{
+        flex-direction: row;
+        align-items: center;
+        height: 60px;
+    }
+    
+    .top-navbar-brand{
+        justify-content: unset;
+        width: unset;
+        margin-bottom: 0;
+    }
+    
+    .top-navbar-profile-container{
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .exchanges-container-second{
+        align-items: center;
+        justify-content: space-between;
+        width: 30%;
+    }
+    
+    .exchanges-container-navbar h1{
+        font-size: 20px;
+    }
+    
+    .top-navbar-buttons-container{
+        display: flex;
+        align-items: center;
+    }
+    
+    .top-navbar-icon{
+        font-size: 24px;
+        margin-right: 5px;
+    }
+    
+    .notification-badge {
+        display: flex;
+    }
+    
+    .top-navbar-login-container{
+        width: 9%;
+        justify-content: space-between;
+    }
+
 }
