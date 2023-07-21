@@ -293,7 +293,7 @@ const Profile = () => {
                                             })}
                                             type="text"
                                             className={`form-control text-dark base-input ${errors.imgUrl ? 'is-invalid' : ''}`}
-                                            placeholder="URL of user's image"
+                                            placeholder="URL of book's image"
                                             name="imgUrl"
                                         />
                                     </div>
