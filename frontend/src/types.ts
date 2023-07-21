@@ -46,9 +46,9 @@ export type Exchange = {
     status: string;
     creationTime: string;
     creator: User;
-    receiver: User;
+    receiver: User | null;
     bookOffered: Book;
-    bookReceived: Book;
+    bookReceived: Book | null;
 }
 
 export type Notification = {

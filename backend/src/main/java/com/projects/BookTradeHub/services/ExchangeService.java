@@ -84,9 +84,13 @@ public class ExchangeService {
 		entity.setStatus(dto.getStatus());
 		entity.setCreationTime(dto.getCreationTime());
 		entity.setBookOffered(bookRepository.getOne(dto.getBookOffered().getId()));
-		entity.setBookReceived(bookRepository.getOne(dto.getBookReceived().getId()));
+		if(dto.getBookReceived() != null) {
+			entity.setBookReceived(bookRepository.getOne(dto.getBookReceived().getId()));
+		}
 		entity.setCreator(userRepository.getOne(dto.getCreator().getId()));
-		entity.setReceiver(userRepository.getOne(dto.getReceiver().getId()));
+		if(dto.getReceiver() != null) {
+			entity.setReceiver(userRepository.getOne(dto.getReceiver().getId()));
+		}
 	}
 	
 	@Transactional(readOnly = true)

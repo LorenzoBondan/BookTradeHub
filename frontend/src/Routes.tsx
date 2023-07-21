@@ -10,6 +10,7 @@ import Home from "pages/Home";
 import Exchanges from "pages/Exchanges";
 import DisponibleExchanges from "pages/DisponibleExchanges";
 import Profile from "pages/Profile";
+import CreateExchange from "pages/CreateExchange";
 
 const Routes = () => {
 
@@ -52,12 +53,8 @@ const Routes = () => {
                                 <DisponibleExchanges/>
                             </Route>
 
-                            <Route path="/exchanges/:exchangeId" exact>
-
-                            </Route>
-
                             <Route path="/create" exact>
-
+                                <CreateExchange/>
                             </Route>
 
                             <Route path="/profile" exact>
