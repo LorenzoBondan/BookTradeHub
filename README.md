@@ -21,7 +21,7 @@ The online platform that connects passionate readers, facilitating book exchange
 
 ### Profile
 ![profile](https://github.com/LorenzoBondan/BookTradeHub/assets/105743965/bef03c95-2425-4347-aace-1e4c75b17af4)
-![profile-add-book](https://github.com/LorenzoBondan/BookTradeHub/assets/105743965/b35145f4-c3b7-47a7-9ead-43e488317798)
+![profile-add-book](https://github.com/LorenzoBondan/BookTradeHub/assets/105743965/20c061a3-69f8-4ba0-8525-e81566301e23)
 
 #### Home page
 ![home](https://github.com/LorenzoBondan/BookTradeHub/assets/105743965/3b557321-68de-4674-aafc-bdb87a435919)
