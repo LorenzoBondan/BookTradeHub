@@ -140,7 +140,7 @@ public class ExchangeService {
 				entity.setReceiver(user);
 				user = userRepository.save(user);
 				entity = repository.save(entity);
-				updateStatus(id, Status.PENDING, "The book " + bookReceived.getTitle() + " was offered to the exchange.");
+				updateStatus(id, Status.PENDING, "The book " + bookReceived.getTitle() + " was offered to the exchange #" + entity.getId() + ".");
 				entity = repository.save(entity);
 				
 				
@@ -182,7 +182,7 @@ public class ExchangeService {
 		try {
 			Exchange entity = repository.getOne(id);
 			if(entity.getBookReceived() != null && entity.getStatus() != Status.CANCELED) {
-				updateStatus(id, Status.PENDING, "The exchange with the book " + entity.getBookReceived().getTitle() + " was rejected. Please offer another book to the exchange.");
+				updateStatus(id, Status.PENDING, "The exchange with the book " + entity.getBookReceived().getTitle() + " was rejected. Please offer another book to the exchange #" + entity.getId() + ".");
 				entity.setBookReceived(null);
 				entity = repository.save(entity);
 				return new ExchangeDTO(entity);

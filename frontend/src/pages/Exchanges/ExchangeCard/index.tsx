@@ -130,6 +130,15 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
             })
     }
 
+    function hexToRgb(hex: string): string {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return `${r}, ${g}, ${b}`;
+    };
+
+    const rgbColor = hexToRgb(color);
+
     return(
         <>
         <div className={(exchange.creator.id === user.id && exchange.status !== "DISPONIBLE") || (exchange.creator.id !== user.id && exchange.status === "DISPONIBLE") || (exchange.creator.id !== user.id && exchange.status !== "DISPONIBLE") ? ('exchange-card-container base-card') : ('exchange-card-container base-card margin-bottom-30')}>
@@ -138,6 +147,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
                 <div className='exchange-card-creator-and-receiver-container'>
                     <div className='creator-container'>
                         <div className='creator-info'>
+                            <span className='exchange-id' style={{color: color, backgroundImage: `linear-gradient(360deg, rgba(${rgbColor}, 0.3) 10%, ${color} 100%)`}}><strong style={{color:"#FFF"}}>#{exchange.id}</strong></span>
                             <h4>Creator</h4>
                             <div className="image-wrapper">
                                 <img src={exchange.creator.imgUrl} alt="" />

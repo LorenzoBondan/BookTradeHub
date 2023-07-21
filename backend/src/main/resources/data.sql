@@ -46,5 +46,3 @@ INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Of
 INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (1, TIMESTAMP WITHOUT TIME ZONE '2023-07-16T14:30:00', 2, 3, 1, 2);
 INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (2, TIMESTAMP WITHOUT TIME ZONE '2023-07-16T15:00:00', 3, 1, 3, 1);
 
-INSERT INTO tb_notification (description, read, moment, user_id) VALUES ('First notification', false, TIMESTAMP WITHOUT TIME ZONE '2023-06-12T22:30:12', 2);
-
