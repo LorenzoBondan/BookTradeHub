@@ -9,7 +9,12 @@ import { requestBackend } from 'util/requests';
 import { toast } from 'react-toastify';
 import Select from "react-select";
 
-const CreateExchange = () => {
+type Props = {
+    onSubmitForm: Function;
+    onCancelForm: Function;
+}
+
+const CreateExchange = ({onSubmitForm, onCancelForm} : Props) => {
 
     const {handleSubmit , control} = useForm<Exchange>();
 
@@ -64,6 +69,7 @@ const CreateExchange = () => {
             await requestBackend(params);
             history.push("/exchanges");
             toast.success("Exchange created!");
+            onSubmitForm();
           } catch (error) {
             console.log("Error: " + error);
           }
@@ -72,7 +78,8 @@ const CreateExchange = () => {
 
     const handleCancel = () => {
         history.push("/exchanges");
-      };
+        onCancelForm();
+    };
 
     return(
         <div className='create-exchange-container'>

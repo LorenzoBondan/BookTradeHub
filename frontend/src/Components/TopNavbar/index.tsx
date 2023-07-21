@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { MdAdminPanelSettings } from 'react-icons/md';
 import { IoIosNotificationsOutline } from 'react-icons/io';
 import { AiOutlinePlus } from 'react-icons/ai';
@@ -17,8 +17,9 @@ import Notifications from 'Components/Notifications';
 import logo from 'assets/images/logo.png';
 import { AuthContext } from 'AuthContext';
 import { removeAuthData } from 'util/storage';
-import history from 'util/history';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
+import Modal from 'react-modal';
+import CreateExchange from 'pages/CreateExchange';
 
 const TopNavbar = () => {
 
@@ -87,6 +88,23 @@ const TopNavbar = () => {
         }
     }
 
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+
+    function openModal(){
+      setModalIsOpen(true);
+    }
+  
+    function closeModal(){
+      setModalIsOpen(false);
+    }
+
+    const history = useHistory();
+
+    const handlePush = () => {
+      history.push("/exchanges");
+      closeModal();
+    };
+
     return(
         <div className='top-navbar-main-container'>
           <div className='tasks-container-navbar'>
@@ -112,9 +130,16 @@ const TopNavbar = () => {
                       <IoIosNotificationsOutline className='top-navbar-icon' />
                       {user && user?.notifications.filter(notification => !notification.read).length > 0 && <span className='notification-badge'>{user?.notifications.filter(notification => !notification.read).length}</span>}
                     </p>
-                    <NavLink to="/create">
-                        <p data-tooltip-content="New Exchange" data-tooltip-id="top-navbar-tooltip"><AiOutlinePlus className='top-navbar-icon'/></p>
-                    </NavLink>
+                    <p onClick={openModal} data-tooltip-content="New Exchange" data-tooltip-id="top-navbar-tooltip"><AiOutlinePlus className='top-navbar-icon'/></p>
+                      <Modal 
+                        isOpen={modalIsOpen}
+                        onRequestClose={closeModal}
+                        contentLabel="Example Modal"
+                        overlayClassName="modal-overlay"
+                        className="modal-content"
+                      >
+                        <CreateExchange onSubmitForm={handlePush} onCancelForm={closeModal}/>
+                      </Modal>
                     <NavLink to="/disponibleExchanges">
                         <p data-tooltip-content="Disponible Exchanges" data-tooltip-id="top-navbar-tooltip"><AiOutlineSearch className='top-navbar-icon'/></p>
                     </NavLink>
