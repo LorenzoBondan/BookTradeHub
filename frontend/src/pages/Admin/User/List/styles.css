@@ -6,8 +6,24 @@
     height: 100%;
 }
 
+.courses-crud-bar-container button{
+    margin-bottom: 0 !important;
+}
+
 .courses-crud-content{
     width: 100%;
     display: flex;
     flex-direction: column;
+}
+
+.users-search-bar-container{
+    display: flex;
+    width: 280px;
+}
+
+@media(min-width:576px){
+    .users-search-bar-container{
+        display: flex;
+        width: 450px;
+    }
 }

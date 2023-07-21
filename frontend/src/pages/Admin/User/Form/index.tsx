@@ -94,6 +94,33 @@ const Form = () => {
                                 />
                                 <div className='invalid-feedback d-block'>{errors.name?.message}</div>
                             </div>
+                            <div className='margin-bottom-30'>
+                                <label htmlFor="">Password</label>
+                                <input 
+                                    {...register("password")}
+                                    type="text"
+                                    className={`form-control base-input ${errors.password ? 'is-invalid' : ''}`}
+                                    placeholder="Password"
+                                    name="password"
+                                />
+                                <div className='invalid-feedback d-block'>{errors.name?.message}</div>
+                            </div>
+                            <div className='margin-bottom-30'>
+                                <label htmlFor="">Email</label>
+                                <input 
+                                    {...register("email", {
+                                    pattern: { 
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: 'Insira um Email válido'
+                                        }
+                                    })}
+                                    type="text"
+                                    className={`form-control base-input ${errors.email ? 'is-invalid' : ''}`}
+                                    placeholder="Email"
+                                    name="email"
+                                />
+                                <div className='invalid-feedback d-block'>{errors.email?.message}</div>
+                            </div>
                         </div>
                         <div className='margin-bottom-30'>
                             <label htmlFor="">Img Url</label>  

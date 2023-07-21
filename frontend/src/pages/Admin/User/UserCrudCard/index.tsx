@@ -32,7 +32,7 @@ function UserCrudCard( {user, onDelete} : Props ) {
         <div className='base-card user-crud-card'>
             <div className='user-crud-card-top-container'>
               <img src={user.imgUrl} alt="" />
-              <h3>{user.name}</h3>
+              <h3>{user.name} <p>#{user.id}</p></h3>
             </div>
             <div className='user-crud-card-buttons-container'>
               <Link to={`/admin/users/${user.id}`}>

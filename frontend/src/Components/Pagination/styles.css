@@ -22,7 +22,7 @@
 }
 
 .pagination-item.active {
-    background-color: #F15A23;
+    background-color: #FFA500;
 }
 
 .pagination-item:hover{
@@ -30,7 +30,7 @@
 }
 
 .pagination-link-active {
-    background-color: #F15A23;
+    background-color: #FFA500;
     color: #fff !important;
 }
 
@@ -40,16 +40,16 @@
 
 .arrow-previous {
     transform: rotate(-180deg);
-    color: #F15A23;
+    color: #FFA500;
 }
 
 .arrow-next {
     margin-left: 10px;
-    color: #F15A23;
+    color: #FFA500;
 }
 
 .arrow-active{
-    color: #F15A23;
+    color: #FFA500;
     margin-left: 10px;
 }
 
@@ -59,5 +59,5 @@
 }
 
 .pagination-arrow-container svg {
-    color: #F15A23;
+    color: #FFA500;
 }
