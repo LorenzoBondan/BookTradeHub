@@ -31,16 +31,16 @@ function Footer() {
                 Backend used Languages
               </h6>
               <p><i style={{marginRight:"8px"}}><FaJava/></i> Java</p>
-              <p><i style={{marginRight:"8px"}}><SiSpring/></i> Spring</p>
+              <p><i style={{marginRight:"8px"}}><SiSpring/></i> Spring Boot</p>
               <p><i style={{marginRight:"8px"}}><SiPostgresql/></i>SQL</p>
             </MDBCol>
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-1">
               <h6 className="text-uppercase fw-bold mb-4 mt-1">
                 Frontend used Languages
               </h6>
+              <p><i style={{marginRight:"8px"}}><SiTypescript/></i> Typescript</p>
               <p><i style={{marginRight:"8px"}}><FaReact/></i> React</p>
               <p><i style={{marginRight:"8px"}}><DiCss3/></i> CSS</p>
-              <p><i style={{marginRight:"8px"}}><SiTypescript/></i> Typescript</p>
             </MDBCol>
             <MDBCol md="3" lg="2" xl="2" className="mx-auto mb-md-0 mb-1">
               <h6 className="text-uppercase fw-bold mb-4 mt-1">Contact</h6>
@@ -70,7 +70,7 @@ function Footer() {
           </MDBRow>
           <MDBRow>
             <div className="footer-download-zone">
-              <p><i style={{marginRight:"2px"}}><BiDownload/></i> See the source code and download the project here:</p><a href="https://github.com/LorenzoBondan/AgiTask"><p style={{color:"#00FFFF"}}>https://github.com/LorenzoBondan/AgiTask</p></a>
+              <p><i style={{marginRight:"2px"}}><BiDownload/></i> See the source code and download the project here:</p><a href="https://github.com/LorenzoBondan/BookTradeHub"><p style={{color:"#00FFFF"}}>https://github.com/LorenzoBondan/BookTradeHub</p></a>
             </div>
           </MDBRow>
         </MDBContainer>

@@ -129,10 +129,10 @@ const TopNavbar = () => {
               </> : (
                 <div className='top-navbar-login-container'>
                     <NavLink to="/auth/login" className="login-nav-item">
-                      <p><HiLogin/> Sign In</p>
+                      <p style={{color:"#FF1493"}}><HiLogin/> Sign In</p>
                     </NavLink>
                     <NavLink to="/auth/signup" className="login-nav-item">
-                      <p><AiOutlineEdit/> Sign Up</p>
+                      <p style={{color:"#00FFFF"}}><AiOutlineEdit/> Sign Up</p>
                     </NavLink>
                 </div>
               )}
