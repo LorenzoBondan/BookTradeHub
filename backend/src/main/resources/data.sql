@@ -40,7 +40,7 @@ INSERT INTO tb_user_wishlist (user_id, book_id) VALUES (2, 7);
 INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (0, TIMESTAMP WITHOUT TIME ZONE '2023-06-12T22:30:12', 2, null, 2, null);
 INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (1, TIMESTAMP WITHOUT TIME ZONE '2023-06-12T22:30:12', 2, 1, 2, 1);
 INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (0, TIMESTAMP WITHOUT TIME ZONE '2023-07-15T10:00:00', 1, null, 2, null);
-INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (1, TIMESTAMP WITHOUT TIME ZONE '2023-07-15T10:30:00', 3, 2, 1, 3);
+INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (1, TIMESTAMP WITHOUT TIME ZONE '2023-07-15T10:30:00', 1, 2, 6, 3);
 INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (2, TIMESTAMP WITHOUT TIME ZONE '2023-07-15T11:00:00', 2, 1, 3, 2);
 INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (0, TIMESTAMP WITHOUT TIME ZONE '2023-07-16T14:00:00', 3, null, 3, null);
 INSERT INTO tb_exchange (status, creation_Time, creator_id, receiver_id, book_Offered_id, book_Received_id) VALUES (1, TIMESTAMP WITHOUT TIME ZONE '2023-07-16T14:30:00', 2, 3, 1, 2);
