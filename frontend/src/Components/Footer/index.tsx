@@ -70,7 +70,7 @@ function Footer() {
           </MDBRow>
           <MDBRow>
             <div className="footer-download-zone">
-              <p><i style={{marginRight:"2px"}}><BiDownload/></i> See the source code and download the project here:</p><a href="https://github.com/LorenzoBondan/BookTradeHub"><p style={{color:"#00FFFF"}}>https://github.com/LorenzoBondan/BookTradeHub</p></a>
+              <p><i style={{marginRight:"2px"}}><BiDownload/></i> See the source code and download the project here:</p><a href="https://github.com/LorenzoBondan/BookTradeHub" target="_blank" rel="noopener noreferrer"><p style={{color:"#00FFFF"}}>https://github.com/LorenzoBondan/BookTradeHub</p></a>
             </div>
           </MDBRow>
         </MDBContainer>
