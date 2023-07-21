@@ -43,7 +43,7 @@
 .exchanges-container-second{
     display: flex;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: space-evenly;
     width: 100%;
 }
 
@@ -58,7 +58,6 @@
     font-size: 16px;
     font-weight: 400;
     margin-bottom: 0;
-    border-right: 1px dashed #eaeaea;
     height: 100%;
     padding-right: 12px;
 }
@@ -171,6 +170,7 @@
     .exchanges-container-navbar h1{
         font-size: 20px;
         padding-right: 12px;
+        border-right: 1px dashed #eaeaea;
     }
 }
 
