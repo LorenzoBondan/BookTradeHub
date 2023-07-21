@@ -11,6 +11,7 @@ import BookCard from './BookCard';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
 
@@ -38,6 +39,8 @@ const Profile = () => {
     useEffect(() => {
       getUser();
     }, [getUser]);
+
+    /**/
 
     const [userModalIsOpen, setUserModalIsOpen] = useState(false);
 
@@ -113,6 +116,7 @@ const Profile = () => {
             requestBackend(params)
                 .then(response => {
                     updateUserMyList(response.data);
+                    toast.info("Book added to your list!");
                 })
         }
     };
@@ -156,6 +160,7 @@ const Profile = () => {
             requestBackend(params)
                 .then(response => {
                     updateUserWishList(response.data);
+                    toast.info("Book added to your wish list!");
                 })
         }
     };

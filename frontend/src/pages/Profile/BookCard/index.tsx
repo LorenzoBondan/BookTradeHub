@@ -3,6 +3,7 @@ import './styles.css';
 import { AiFillDelete } from 'react-icons/ai';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
+import { toast } from 'react-toastify';
 
 type Props = {
     book: Book;
@@ -26,6 +27,7 @@ const BookCard = ({book, user, onDelete} : Props) => {
     
         requestBackend(params).then(() => {
           onDelete();
+          toast.info("Book removed from your list!");
         })
     }
 
