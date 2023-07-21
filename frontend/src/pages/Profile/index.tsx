@@ -103,10 +103,6 @@ const Profile = () => {
 
     const onSubmitMyListBook = (formData : Book) => {
         if(user){
-            const list = [user.id];
-            formData.usersMyId = list;
-            console.log("LIST: ", formData.usersMyId);
-
             const params : AxiosRequestConfig = {
                 method:"POST",
                 url : `/books`,
@@ -116,16 +112,68 @@ const Profile = () => {
         
             requestBackend(params)
                 .then(response => {
-                    console.log('success', response.data);
-                    closeMyListModal();
-                    getUser();
+                    updateUserMyList(response.data);
                 })
         }
     };
 
+    const updateUserMyList = (book : Book) => {
+        const params : AxiosRequestConfig = {
+            method:"PUT",
+            url : `/users/${user?.id}/addToMyList/${book.id}`,
+            withCredentials: true
+        };
+    
+        requestBackend(params)
+            .then(response => {
+                console.log('success', response.data);
+                closeMyListModal();
+                getUser();
+            })
+    }
+
     /* */
 
+    const [wishListModalIsOpen, setWishListModalIsOpen] = useState(false);
 
+    function openWishListModal(){
+        setWishListModalIsOpen(true);
+    }
+  
+    function closeWishListModal(){
+        setWishListModalIsOpen(false);
+    }
+
+    const onSubmitWishListBook = (formData : Book) => {
+        if(user){
+            const params : AxiosRequestConfig = {
+                method:"POST",
+                url : `/books`,
+                data: formData,
+                withCredentials: true
+            };
+        
+            requestBackend(params)
+                .then(response => {
+                    updateUserWishList(response.data);
+                })
+        }
+    };
+
+    const updateUserWishList = (book : Book) => {
+        const params : AxiosRequestConfig = {
+            method:"PUT",
+            url : `/users/${user?.id}/addToWishList/${book.id}`,
+            withCredentials: true
+        };
+    
+        requestBackend(params)
+            .then(response => {
+                console.log('success', response.data);
+                closeWishListModal();
+                getUser();
+            })
+    }
 
     return(
         <div className='profile-container'>
@@ -229,7 +277,7 @@ const Profile = () => {
                                         />
                                         <label htmlFor="">Img Url</label>
                                         <input 
-                                            {...registerUser("imgUrl", {
+                                            {...registerBook("imgUrl", {
                                                 required: 'Campo obrigatório',
                                                 pattern: { 
                                                 value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
@@ -250,7 +298,68 @@ const Profile = () => {
                             </Modal>
                         </div>
                         <div className='profile-button'>
-                            <FaBookmark className='profile-button-svg'/>
+                            <FaBookmark onClick={openWishListModal} className='profile-button-svg'/>
+                            <Modal 
+                                isOpen={wishListModalIsOpen}
+                                onRequestClose={closeWishListModal}
+                                contentLabel="Example Modal"
+                                overlayClassName="modal-overlay"
+                                className="modal-content"
+                                >
+                                <form onSubmit={handleSubmitBook(onSubmitWishListBook)} className="my-books-form">
+                                    <h4>Add Book to Wish List</h4>
+                                    <div className='my-books-input-container'>
+                                        <label htmlFor="">Title</label>
+                                        <input 
+                                            {...registerBook("title", {
+                                                required: 'Campo obrigatório',
+                                            })}
+                                            type="text"
+                                            className={`form-control text-dark base-input ${errors.title ? 'is-invalid' : ''}`}
+                                            placeholder="Title"
+                                            name="title"
+                                        />
+                                        <label htmlFor="">Author</label>
+                                        <input 
+                                            {...registerBook("author", {
+                                                required: 'Campo obrigatório',
+                                            })}
+                                            type="text"
+                                            className={`form-control text-dark base-input ${errors.author ? 'is-invalid' : ''}`}
+                                            placeholder="Author"
+                                            name="author"
+                                        />
+                                        <label htmlFor="">Year</label>
+                                        <input 
+                                            {...registerBook("year", {
+                                                required: 'Campo obrigatório',
+                                            })}
+                                            type="text"
+                                            className={`form-control text-dark base-input ${errors.year ? 'is-invalid' : ''}`}
+                                            placeholder="Year"
+                                            name="year"
+                                        />
+                                        <label htmlFor="">Img Url</label>
+                                        <input 
+                                            {...registerBook("imgUrl", {
+                                                required: 'Campo obrigatório',
+                                                pattern: { 
+                                                value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
+                                                message: 'Insira uma URL válida'
+                                                }
+                                            })}
+                                            type="text"
+                                            className={`form-control text-dark base-input ${errors.imgUrl ? 'is-invalid' : ''}`}
+                                            placeholder="URL of user's image"
+                                            name="imgUrl"
+                                        />
+                                    </div>
+                                    <div className="my-books-buttons">
+                                        <button onClick={closeWishListModal} className="btn">Close</button>
+                                        <button className="btn">Submit</button>
+                                    </div>
+                                </form>
+                            </Modal>
                         </div>
                     </div>
                 </div>
