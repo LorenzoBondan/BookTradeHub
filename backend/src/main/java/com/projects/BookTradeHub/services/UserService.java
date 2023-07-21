@@ -165,6 +165,25 @@ public class UserService implements UserDetailsService {
 	}
 	
 	@Transactional
+	public UserDTO addBookToMyList(Long id, Long bookId) {
+		try {
+			User entity = repository.getOne(id);
+			Book book = bookRepository.getOne(bookId);
+			
+			if(!entity.getMyBooks().contains(book)) {
+				entity.getMyBooks().add(book);
+				entity = repository.save(entity);
+				return new UserDTO(entity);
+			}
+			else {
+				throw new ResourceNotFoundException("The book is already in the list.");
+			}
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found " + id);
+		}
+	}
+	
+	@Transactional
 	public UserDTO removeBookFromMyList(Long id, Long bookId) {
 		try {
 			User entity = repository.getOne(id);
@@ -177,6 +196,25 @@ public class UserService implements UserDetailsService {
 			}
 			else {
 				throw new ResourceNotFoundException("Book not found");
+			}
+		} catch (EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Id not found " + id);
+		}
+	}
+	
+	@Transactional
+	public UserDTO addBookToWishList(Long id, Long bookId) {
+		try {
+			User entity = repository.getOne(id);
+			Book book = bookRepository.getOne(bookId);
+			
+			if(!entity.getWishList().contains(book)) {
+				entity.getWishList().add(book);
+				entity = repository.save(entity);
+				return new UserDTO(entity);
+			}
+			else {
+				throw new ResourceNotFoundException("The book is already in the list.");
 			}
 		} catch (EntityNotFoundException e) {
 			throw new ResourceNotFoundException("Id not found " + id);

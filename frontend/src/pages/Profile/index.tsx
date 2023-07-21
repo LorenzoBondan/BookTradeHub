@@ -1,4 +1,4 @@
-import { User } from 'types';
+import { Book, User } from 'types';
 import './styles.css';
 import { useCallback, useEffect, useState } from 'react';
 import { getTokenData } from 'util/auth';
@@ -9,6 +9,8 @@ import { FaBookMedical } from 'react-icons/fa';
 import { FaBookmark } from 'react-icons/fa';
 import BookCard from './BookCard';
 import { AiOutlineUnorderedList } from 'react-icons/ai';
+import Modal from 'react-modal';
+import { useForm } from 'react-hook-form';
 
 const Profile = () => {
 
@@ -37,6 +39,94 @@ const Profile = () => {
       getUser();
     }, [getUser]);
 
+    const [userModalIsOpen, setUserModalIsOpen] = useState(false);
+
+    function openUserModal(){
+        setUserModalIsOpen(true);
+    }
+  
+    function closeUserModal(){
+        setUserModalIsOpen(false);
+    }
+  
+    const { register: registerUser, handleSubmit: handleSubmitUser, setValue } = useForm<User>();
+  
+    useEffect(() => {
+      if(user){
+        requestBackend({url:`/users/${user?.id}`, withCredentials:true})
+          .then((response) => {
+              const user = response.data as User;
+  
+              setValue('name', user.name);
+              setValue('imgUrl', user.imgUrl);
+              setValue('password', user.password);
+              setValue('email', user.email);
+              setValue('exchangesCreatedId', user.exchangesCreatedId);
+              setValue('exchangesReceivedId', user.exchangesReceivedId);
+              setValue('myBooks', user.myBooks);
+              setValue('notifications', user.notifications);
+              setValue('wishList', user.wishList);
+              setValue('roles', user.roles);
+        })  
+      }
+    }, [user, setValue]);
+  
+    const onSubmitUser = (formData : User) => {
+      const params : AxiosRequestConfig = {
+          method:"PUT",
+          url : `/users/${user?.id}`,
+          data: formData,
+          withCredentials: true
+      };
+  
+      requestBackend(params)
+          .then(response => {
+              console.log('success', response.data);
+              closeUserModal();
+              getUser();
+          })
+    };
+
+    /* */
+
+    const [myListModalIsOpen, setMyListModalIsOpen] = useState(false);
+
+    function openMyListModal(){
+        setMyListModalIsOpen(true);
+    }
+  
+    function closeMyListModal(){
+        setMyListModalIsOpen(false);
+    }
+  
+    const { register: registerBook, handleSubmit: handleSubmitBook, formState: {errors} } = useForm<Book>();
+
+    const onSubmitMyListBook = (formData : Book) => {
+        if(user){
+            const list = [user.id];
+            formData.usersMyId = list;
+            console.log("LIST: ", formData.usersMyId);
+
+            const params : AxiosRequestConfig = {
+                method:"POST",
+                url : `/books`,
+                data: formData,
+                withCredentials: true
+            };
+        
+            requestBackend(params)
+                .then(response => {
+                    console.log('success', response.data);
+                    closeMyListModal();
+                    getUser();
+                })
+        }
+    };
+
+    /* */
+
+
+
     return(
         <div className='profile-container'>
             <div className='profile-card base-card'>
@@ -62,10 +152,102 @@ const Profile = () => {
                     </div>
                     <div className='profile-card-top-buttons'>
                         <div className='profile-button'>
-                            <FaUserEdit className='profile-button-svg'/>
+                            <FaUserEdit className='profile-button-svg' onClick={openUserModal}/>
+                            <Modal 
+                                isOpen={userModalIsOpen}
+                                onRequestClose={closeUserModal}
+                                contentLabel="Example Modal"
+                                overlayClassName="modal-overlay"
+                                className="modal-content"
+                                >
+                                <form onSubmit={handleSubmitUser(onSubmitUser)} className="my-books-form">
+                                    <h4>Edit Profile</h4>
+                                    <div className='my-books-input-container'>
+                                        <label htmlFor="">Img Url</label>
+                                        <input 
+                                            {...registerUser("imgUrl", {
+                                                required: 'Campo obrigatório',
+                                                pattern: { 
+                                                value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
+                                                message: 'Insira uma URL válida'
+                                                }
+                                            })}
+                                            type="text"
+                                            className={`form-control text-dark base-input ${errors.imgUrl ? 'is-invalid' : ''}`}
+                                            placeholder="URL of user's image"
+                                            name="imgUrl"
+                                        />
+                                    </div>
+                                    <div className="my-books-buttons">
+                                        <button onClick={closeUserModal} className="btn">Close</button>
+                                        <button className="btn">Submit</button>
+                                    </div>
+                                </form>
+                            </Modal>
                         </div>
                         <div className='profile-button'>
-                            <FaBookMedical className='profile-button-svg'/>
+                            <FaBookMedical onClick={openMyListModal} className='profile-button-svg'/>
+                            <Modal 
+                                isOpen={myListModalIsOpen}
+                                onRequestClose={closeMyListModal}
+                                contentLabel="Example Modal"
+                                overlayClassName="modal-overlay"
+                                className="modal-content"
+                                >
+                                <form onSubmit={handleSubmitBook(onSubmitMyListBook)} className="my-books-form">
+                                    <h4>Add Book to My List</h4>
+                                    <div className='my-books-input-container'>
+                                        <label htmlFor="">Title</label>
+                                        <input 
+                                            {...registerBook("title", {
+                                                required: 'Campo obrigatório',
+                                            })}
+                                            type="text"
+                                            className={`form-control text-dark base-input ${errors.title ? 'is-invalid' : ''}`}
+                                            placeholder="Title"
+                                            name="title"
+                                        />
+                                        <label htmlFor="">Author</label>
+                                        <input 
+                                            {...registerBook("author", {
+                                                required: 'Campo obrigatório',
+                                            })}
+                                            type="text"
+                                            className={`form-control text-dark base-input ${errors.author ? 'is-invalid' : ''}`}
+                                            placeholder="Author"
+                                            name="author"
+                                        />
+                                        <label htmlFor="">Year</label>
+                                        <input 
+                                            {...registerBook("year", {
+                                                required: 'Campo obrigatório',
+                                            })}
+                                            type="text"
+                                            className={`form-control text-dark base-input ${errors.year ? 'is-invalid' : ''}`}
+                                            placeholder="Year"
+                                            name="year"
+                                        />
+                                        <label htmlFor="">Img Url</label>
+                                        <input 
+                                            {...registerUser("imgUrl", {
+                                                required: 'Campo obrigatório',
+                                                pattern: { 
+                                                value: /^(https?|chrome):\/\/[^\s$.?#].[^\s]*$/gm,
+                                                message: 'Insira uma URL válida'
+                                                }
+                                            })}
+                                            type="text"
+                                            className={`form-control text-dark base-input ${errors.imgUrl ? 'is-invalid' : ''}`}
+                                            placeholder="URL of user's image"
+                                            name="imgUrl"
+                                        />
+                                    </div>
+                                    <div className="my-books-buttons">
+                                        <button onClick={closeMyListModal} className="btn">Close</button>
+                                        <button className="btn">Submit</button>
+                                    </div>
+                                </form>
+                            </Modal>
                         </div>
                         <div className='profile-button'>
                             <FaBookmark className='profile-button-svg'/>

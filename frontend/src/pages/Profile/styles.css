@@ -200,6 +200,33 @@
     background-color: transparent; 
 }
 
+.my-books-form{
+    width: 100%;
+}
+
+.my-books-input-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100% !important;
+}
+
+.my-books-input-container label{
+    margin: 10px 0 2px 0;
+}
+
+.my-books-input-container input{
+    color: black !important;
+    width: 100%;
+}
+
+.my-books-input-container input:focus {
+    box-shadow: none !important;
+    background-color: transparent !important;
+    color: black !important;
+  }
+
 @media(min-width:1200px){
     .profile-container{
         height: calc(100vh - 200px);

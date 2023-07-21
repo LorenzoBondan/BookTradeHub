@@ -69,9 +69,21 @@ public class UserResource {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@PutMapping(value = "/{id}/addToMyList/{bookId}")
+	public ResponseEntity<UserDTO> addToMyList(@PathVariable Long id, @PathVariable Long bookId)	{
+		UserDTO newDto = service.addBookToMyList(id, bookId);
+		return ResponseEntity.ok().body(newDto);
+	}
+	
 	@PutMapping(value = "/{id}/removeFromMyList/{bookId}")
 	public ResponseEntity<UserDTO> removeFromMyList(@PathVariable Long id, @PathVariable Long bookId)	{
 		UserDTO newDto = service.removeBookFromMyList(id, bookId);
+		return ResponseEntity.ok().body(newDto);
+	}
+	
+	@PutMapping(value = "/{id}/addToWishList/{bookId}")
+	public ResponseEntity<UserDTO> addToWishList(@PathVariable Long id, @PathVariable Long bookId)	{
+		UserDTO newDto = service.addBookToWishList(id, bookId);
 		return ResponseEntity.ok().body(newDto);
 	}
 	
