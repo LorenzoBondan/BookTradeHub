@@ -84,29 +84,30 @@ const CreateExchange = ({onSubmitForm, onCancelForm} : Props) => {
     return(
         <div className='create-exchange-container'>
             <h1>Create new Exchange</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form onSubmit={handleSubmit(onSubmit)} className='form-container'>
                 <div className='form-inputs-container'>
-                <Controller
-                    name="bookOffered"
-                    rules={{ required: false }}
-                    control={control}
-                    render={({ field }) => (
-                    <Select
-                        {...field}
-                        options={user?.myBooks?.sort((a, b) =>
-                          a.title > b.title ? 1 : -1
-                        )}
-                        classNamePrefix="my-books-select"
-                        placeholder="My books"
-                        getOptionLabel={(b: Book) => b.title}
-                        getOptionValue={(b: Book) => b.id.toString()}
-                      />
-                    )}
-                />
+                  <label htmlFor="">Book Offered</label>
+                  <Controller
+                      name="bookOffered"
+                      rules={{ required: false }}
+                      control={control}
+                      render={({ field }) => (
+                      <Select
+                          {...field}
+                          options={user?.myBooks?.sort((a, b) =>
+                            a.title > b.title ? 1 : -1
+                          )}
+                          classNamePrefix="my-books-select"
+                          placeholder="My books"
+                          getOptionLabel={(b: Book) => b.title}
+                          getOptionValue={(b: Book) => b.id.toString()}
+                        />
+                      )}
+                  />
                 </div>
                 <div className="form-buttons-container">
                 <button
-                  className="btn btn-outline-secondary post-crud-buttons"
+                  className="btn btn-outline-quinternary post-crud-buttons"
                   onClick={handleCancel}
                 >
                   CANCEL

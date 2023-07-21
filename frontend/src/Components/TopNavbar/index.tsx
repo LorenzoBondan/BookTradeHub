@@ -19,7 +19,7 @@ import { AuthContext } from 'AuthContext';
 import { removeAuthData } from 'util/storage';
 import { Tooltip as ReactTooltip } from 'react-tooltip';
 import Modal from 'react-modal';
-import CreateExchange from 'pages/CreateExchange';
+import CreateExchange from 'Components/CreateExchange';
 
 const TopNavbar = () => {
 

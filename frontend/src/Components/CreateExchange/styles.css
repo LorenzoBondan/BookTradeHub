@@ -1,0 +1,72 @@
+.create-exchange-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    padding: 10px;
+}
+
+.create-exchange-container h1{
+    color: #ff1491;
+    text-shadow: 0px 1px 1px black;
+    width: 100%;
+    border-bottom: 2px solid #eaeaea;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-family: 'Raleway';
+}
+
+.form-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.form-container label{
+    color: rgb(100, 100, 100);
+}
+
+.my-books-select__control{
+    border: #FF1493 1px solid !important;
+}
+
+/* selected option */
+.my-books-select__option--is-selected {
+    background-color: #FF1493 !important;
+    color: white !important;
+}
+  
+/* non selected option */
+.my-books-select__option {
+    background-color: white;
+    color: black !important;
+}
+
+.my-books-select__control--is-focused {
+    border-color: #FF1493 !important;
+    box-shadow: 0 1px 6px #FF1493 !important;
+}
+
+.my-books-select__indicator{
+    color: #FF1493 !important;
+}
+
+.my-books-select__indicator-separator{
+    background-color: #ff14917c !important;
+}
+
+.form-buttons-container{
+    border-top: 1px solid #eaeaea;
+    padding-top: 10px;
+    margin-top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.form-buttons-container button{
+    width: 50%;
+}
