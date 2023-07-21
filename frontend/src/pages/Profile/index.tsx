@@ -12,6 +12,7 @@ import { AiOutlineUnorderedList } from 'react-icons/ai';
 import Modal from 'react-modal';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const Profile = () => {
 
@@ -205,7 +206,8 @@ const Profile = () => {
                     </div>
                     <div className='profile-card-top-buttons'>
                         <div className='profile-button'>
-                            <FaUserEdit className='profile-button-svg' onClick={openUserModal}/>
+                            <FaUserEdit className='profile-button-svg' onClick={openUserModal} data-tooltip-content="Edit Profile" data-tooltip-id="profile-tooltip"/>
+                            <ReactTooltip id="profile-tooltip" place="bottom" />
                             <Modal 
                                 isOpen={userModalIsOpen}
                                 onRequestClose={closeUserModal}
@@ -239,7 +241,7 @@ const Profile = () => {
                             </Modal>
                         </div>
                         <div className='profile-button'>
-                            <FaBookMedical onClick={openMyListModal} className='profile-button-svg'/>
+                            <FaBookMedical onClick={openMyListModal} className='profile-button-svg' data-tooltip-content="Add Book to My List" data-tooltip-id="profile-tooltip"/>
                             <Modal 
                                 isOpen={myListModalIsOpen}
                                 onRequestClose={closeMyListModal}
@@ -303,7 +305,7 @@ const Profile = () => {
                             </Modal>
                         </div>
                         <div className='profile-button'>
-                            <FaBookmark onClick={openWishListModal} className='profile-button-svg'/>
+                            <FaBookmark onClick={openWishListModal} className='profile-button-svg' data-tooltip-content="Add Book to Wish List" data-tooltip-id="profile-tooltip"/>
                             <Modal 
                                 isOpen={wishListModalIsOpen}
                                 onRequestClose={closeWishListModal}

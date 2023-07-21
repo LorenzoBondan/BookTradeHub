@@ -18,6 +18,7 @@ import logo from 'assets/images/logo.png';
 import { AuthContext } from 'AuthContext';
 import { removeAuthData } from 'util/storage';
 import history from 'util/history';
+import { Tooltip as ReactTooltip } from 'react-tooltip';
 
 const TopNavbar = () => {
 
@@ -96,31 +97,32 @@ const TopNavbar = () => {
               {authContextData.authenticated ?
               <>
               <div className='tasks-container-second'>
+                  <ReactTooltip id="top-navbar-tooltip" place="bottom" />
                   <NavLink to="/profile" className='top-navbar-profile-container'>
-                      <img src={user?.imgUrl} alt="" />
+                      <img src={user?.imgUrl} alt=""/>
                       <h1>{user?.name}</h1>
                   </NavLink>
                   <div className='top-navbar-buttons-container'>
                     { hasAnyRoles(['ROLE_ADMIN']) && ( 
                       <NavLink to="/admin" className="admin-nav-item">
-                          <p><MdAdminPanelSettings className='top-navbar-icon'/></p>
+                          <p data-tooltip-content="Admin" data-tooltip-id="top-navbar-tooltip"><MdAdminPanelSettings className='top-navbar-icon'/></p>
                       </NavLink>
                     )}
-                    <p onClick={() => openAndCloseNotifications()}>
+                    <p onClick={() => openAndCloseNotifications()} data-tooltip-content="Notifications" data-tooltip-id="top-navbar-tooltip">
                       <IoIosNotificationsOutline className='top-navbar-icon' />
                       {user && user?.notifications.filter(notification => !notification.read).length > 0 && <span className='notification-badge'>{user?.notifications.filter(notification => !notification.read).length}</span>}
                     </p>
                     <NavLink to="/create">
-                        <p><AiOutlinePlus className='top-navbar-icon'/></p>
+                        <p data-tooltip-content="New Exchange" data-tooltip-id="top-navbar-tooltip"><AiOutlinePlus className='top-navbar-icon'/></p>
                     </NavLink>
                     <NavLink to="/disponibleExchanges">
-                        <p><AiOutlineSearch className='top-navbar-icon'/></p>
+                        <p data-tooltip-content="Disponible Exchanges" data-tooltip-id="top-navbar-tooltip"><AiOutlineSearch className='top-navbar-icon'/></p>
                     </NavLink>
                     <NavLink to="/exchanges">
-                        <p><TbArrowsExchange className='top-navbar-icon'/></p>
+                        <p data-tooltip-content="My Exchanges" data-tooltip-id="top-navbar-tooltip"><TbArrowsExchange className='top-navbar-icon'/></p>
                     </NavLink>
                     <NavLink to="/" className="login-nav-item" onClick={handleLogoutClick}>
-                      <p><HiLogout className='top-navbar-icon'/></p>
+                      <p data-tooltip-content="Logout" data-tooltip-id="top-navbar-tooltip"><HiLogout className='top-navbar-icon'/></p>
                     </NavLink>
                   </div>
               </div>
