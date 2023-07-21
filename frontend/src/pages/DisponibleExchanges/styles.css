@@ -1,5 +1,6 @@
 .exchanges-waiting-header{
     display: flex;
+    flex-direction: column;
     width: 100%;
     align-items: center;
     justify-content: space-evenly;
@@ -17,4 +18,10 @@
     color: #00FFFF;
     text-shadow: 1px 1px 1px black;
     margin-bottom: 0;
+}
+
+@media(min-width:768px){
+    .exchanges-waiting-header{
+        flex-direction: row;
+    }
 }
