@@ -132,7 +132,7 @@ const ExchangeCard = ({ exchange, onChangeStatus, color, user }: Props) => {
 
     return(
         <>
-        <div className={(exchange.creator.id === user.id && exchange.status !== "DISPONIBLE") || (exchange.creator.id !== user.id && exchange.status === "DISPONIBLE") ? ('exchange-card-container base-card') : ('exchange-card-container base-card margin-bottom-30')}>
+        <div className={(exchange.creator.id === user.id && exchange.status !== "DISPONIBLE") || (exchange.creator.id !== user.id && exchange.status === "DISPONIBLE") || (exchange.creator.id !== user.id && exchange.status !== "DISPONIBLE") ? ('exchange-card-container base-card') : ('exchange-card-container base-card margin-bottom-30')}>
             <div className='border-colored' style={{height:"100%", width:"3px", backgroundColor: color}}></div>
             <div className='exchange-card-content-container'>
                 <div className='exchange-card-creator-and-receiver-container'>
